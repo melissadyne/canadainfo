@@ -1,1 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+        
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1315042809627793');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1315042809627793&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Dream Career</title>
+
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: red;
+    }
+
+    .thicker {
+      font-weight: 900;
+      font-size: 35px;
+    }
+
+    .button {
+      background-color: #007bff;
+      color: white;
+      padding: 34px 24px;
+      font-size: 39px;
+      font-weight: 700;
+      width: 90%;
+      margin-top: 40px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: "Open Sans", sans-serif;
+      transition: all 0.3s ease-in-out;
+      animation: zoomInOut 2s infinite ease-in-out;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+      transform: scale(1.08);
+      box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+    }
+
+    @keyframes zoomInOut {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .scarcity-container {
+      width: 90%;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .scarcity-label {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #cc0000;
+    }
+
+    .countdown-time {
+      font-size: 26px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .bar-outer {
+      width: 100%;
+      height: 30px;
+      background-color: #f1f1f1;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .bar-inner {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(270deg, #ff0000, #cc0000, #ff0000);
+      background-size: 200% 200%;
+      border-radius: 20px;
+      animation: shimmer 1.5s linear infinite;
+      transition: width 1s linear;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .buttah {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+    }
+
+    #deadline {
+      font-size: 16px;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="thicker">START WATCHING BELOW!</h1>
+
+  <!-- Scarcity Countdown -->
+  <div class="scarcity-container">
+    <div class="scarcity-label">Hurry! Time left before the offer closes:</div>
+    <div class="countdown-time" id="countdown-text">Loading...</div>
+    <div class="bar-outer">
+      <div class="bar-inner" id="countdown-bar"></div>
+    </div>
+  </div>
+
+  <!-- Deadline Full Text -->
+  <div id="deadline"></div>
+
+  <!-- Apply Button -->
+  <button class="button" onclick="applyNow()">WATCH NOW</button>
+
+  <div class="buttah"></div>
+
+  <script>
+    var links = [
+
+        "https://visa.winxa.online/2025/05/24/jobs-in-usa-with-visa-sponsorship-salary-of-65000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-new-zealand-with-visa-sponsorship-salary-of-55000-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-switzerland-with-visa-sponsorship-salary-of-45000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-australia-with-visa-sponsorship-salary-of-35000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-luxembourg-with-visa-sponsorship-salary-of-75000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-the-united-kingdom-with-visa-sponsorship-salary-of-80000-per-year/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-the-united-kingdom-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-canada-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-new-zealand-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-australia-with-visa-sponsorship/"
+
+     
+        
+        
+    ];
+
+    function applyNow() {
+      var lastOpenedIndex = localStorage.getItem("lastOpenedIndex");
+      var randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * links.length);
+      } while (randomIndex == lastOpenedIndex);
+
+      localStorage.setItem("lastOpenedIndex", randomIndex);
+      window.open(links[randomIndex], "_self");
+      fbq('track', 'LinkButtonClick', { linkURL: links[randomIndex] });
+    }
+
+    function setDeadlineText() {
+      const now = new Date();
+      let deadline = new Date();
+      deadline.setHours(23, 59, 0, 0);
+      if (now.getTime() > deadline.getTime()) {
+        deadline.setDate(deadline.getDate() + 1);
+      }
+
+      const options = { 
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true 
+      };
+      document.getElementById('deadline').textContent = "Deadline: " + deadline.toLocaleString('en-US', options);
+    }
+
+    function startCountdownBar() {
+      const bar = document.getElementById('countdown-bar');
+      const text = document.getElementById('countdown-text');
+      const end = new Date();
+      end.setHours(23, 59, 0, 0);
+
+      function updateCountdown() {
+        const now = new Date();
+        let total = end - now;
+
+        if (total <= 0) {
+          bar.style.width = "0%";
+          text.textContent = "00:00";
+          return;
+        }
+
+        let hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+        let minutes = Math.floor((total / (1000 * 60)) % 60);
+        let seconds = Math.floor((total / 1000) % 60);
+
+        let percentLeft = (total / (1000 * 60 * 60 * 24)) * 100;
+        bar.style.width = percentLeft + "%";
+
+        text.textContent = 
+          (hours < 10 ? '0' : '') + hours + ":" +
+          (minutes < 10 ? '0' : '') + minutes + ":" +
+          (seconds < 10 ? '0' : '') + seconds;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    setDeadlineText();
+    startCountdownBar();
+  </script>
+
+</body
+</html>
+&ensp; &nbsp; &emsp;
+<footer>
+<p><a href="/privacy-policy.html" target="_blank">Privacy Policy</a></p>
+
+<!-- BEGIN: Powered by Supercounters.com -->
+<center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1668373,"ffffff","ffffff");</script><br><noscript><a href="https://www.supercounters.com/">free online counter</a></noscript>
+</center>
+<!-- END: Powered by Supercounters.com -->
+</footer>
