@@ -2,29 +2,18 @@
 <html lang="en">
 <head>
 
-<script>
-    async function redirectIfFromTargetCountries() {
-      try {
-        // Use a free IP geolocation API (ipapi.co)
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        const country = data.country_name;
-
-        const targetCountries = ["Malawi", "Mozambique", "Nigeria", "Zambia", "Ghana", "Zimbabwe", "Ethiopia",];
-        const redirectUrl = "https://www.profitableratecpm.com/ysz18a680?key=1a72001338688b7d409faa8a8eaeba11";
-
-        if (targetCountries.includes(country)) {
-          window.location.href = redirectUrl;
-        }
-      } catch (error) {
-        console.error('Geolocation error:', error);
+    <script>
+      function redirect () {
+         setTimeout(myURL, 2000);
+         var result = document.getElementById("result");
+         result.innerHTML = "<b> The page will redirect after delay of 2 seconds";
       }
-    }
 
-    redirectIfFromTargetCountries();
-  </script>
-
-        
+      function myURL() {
+         document.location.href = '//ak.stikroltiltoowi.net/4/9039697';
+      }
+   </script>
+    
     <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
