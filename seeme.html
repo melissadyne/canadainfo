@@ -156,7 +156,103 @@ src="https://www.facebook.com/tr?id=1315042809627793&ev=PageView&noscript=1"
   <script>
     var links = [
 
-        "//ak.stikroltiltoowi.net/4/9039697"
+       "https://visa.winxa.online/2025/05/24/jobs-in-usa-with-visa-sponsorship-salary-of-65000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-new-zealand-with-visa-sponsorship-salary-of-55000-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-switzerland-with-visa-sponsorship-salary-of-45000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-australia-with-visa-sponsorship-salary-of-35000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-luxembourg-with-visa-sponsorship-salary-of-75000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-the-united-kingdom-with-visa-sponsorship-salary-of-80000-per-year/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-the-united-kingdom-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-canada-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-new-zealand-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-australia-with-visa-sponsorship/"
+        
+        
+    ];
+
+    function applyNow() {
+      var lastOpenedIndex = localStorage.getItem("lastOpenedIndex");
+      var randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * links.length);
+      } while (randomIndex == lastOpenedIndex);
+
+      localStorage.setItem("lastOpenedIndex", randomIndex);
+      window.open(links[randomIndex], "_self");
+      fbq('track', 'LinkButtonClick', { linkURL: links[randomIndex] });
+    }
+
+    function setDeadlineText() {
+      const now = new Date();
+      let deadline = new Date();
+      deadline.setHours(23, 59, 0, 0);
+      if (now.getTime() > deadline.getTime()) {
+        deadline.setDate(deadline.getDate() + 1);
+      }
+
+      const options = { 
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true 
+      };
+      document.getElementById('deadline').textContent = "Deadline: " + deadline.toLocaleString('en-US', options);
+    }
+
+    function startCountdownBar() {
+      const bar = document.getElementById('countdown-bar');
+      const text = document.getElementById('countdown-text');
+      const end = new Date();
+      end.setHours(23, 59, 0, 0);
+
+      function updateCountdown() {
+        const now = new Date();
+        let total = end - now;
+
+        if (total <= 0) {
+          bar.style.width = "0%";
+          text.textContent = "00:00";
+          return;
+        }
+
+        let hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+        let minutes = Math.floor((total / (1000 * 60)) % 60);
+        let seconds = Math.floor((total / 1000) % 60);
+
+        let percentLeft = (total / (1000 * 60 * 60 * 24)) * 100;
+        bar.style.width = percentLeft + "%";
+
+        text.textContent = 
+          (hours < 10 ? '0' : '') + hours + ":" +
+          (minutes < 10 ? '0' : '') + minutes + ":" +
+          (seconds < 10 ? '0' : '') + seconds;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    setDeadlineText();
+    startCountdownBar();
+  </script>
+
+
+  <!-- Apply Button -->
+  <button class="button" onclick="applyNow()">PLAY NOW</button>
+
+  <div class="buttah"></div>
+
+  <script>
+    var links = [
+
+       "https://visa.winxa.online/2025/05/24/jobs-in-usa-with-visa-sponsorship-salary-of-65000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-new-zealand-with-visa-sponsorship-salary-of-55000-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-switzerland-with-visa-sponsorship-salary-of-45000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-australia-with-visa-sponsorship-salary-of-35000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-luxembourg-with-visa-sponsorship-salary-of-75000-per-year/",
+        "https://visa.winxa.online/2025/05/24/jobs-in-the-united-kingdom-with-visa-sponsorship-salary-of-80000-per-year/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-the-united-kingdom-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-canada-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-new-zealand-with-visa-sponsorship/",
+        "https://visa.winxa.online/2025/05/24/high-paying-jobs-in-australia-with-visa-sponsorship/"
         
         
     ];
