@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Preview Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .video-thumb {
+      position: relative;
+      width: 300px;
+      height: 170px;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid #333;
+    }
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/7/70/HD_transparent_picture.png') no-repeat center;
+      background-size: contain;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Video Preview Gallery</h1>
+  <div class="gallery">
+    <a href="https://example.com/video1" target="_blank" class="video-thumb">
+      <img src="https://via.placeholder.com/300x170?text=Video+1" alt="Video 1">
+      <div class="play-button"></div>
+    </a>
+    <a href="https://example.com/video2" target="_blank" class="video-thumb">
+      <img src="https://via.placeholder.com/300x170?text=Video+2" alt="Video 2">
+      <div class="play-button"></div>
+    </a>
+    <a href="https://example.com/video3" target="_blank" class="video-thumb">
+      <img src="https://via.placeholder.com/300x170?text=Video+3" alt="Video 3">
+      <div class="play-button"></div>
+    </a>
+    <a href="https://example.com/video4" target="_blank" class="video-thumb">
+      <img src="https://via.placeholder.com/300x170?text=Video+4" alt="Video 4">
+      <div class="play-button"></div>
+    </a>
+    <a href="https://example.com/video5" target="_blank" class="video-thumb">
+      <img src="https://via.placeholder.com/300x170?text=Video+5" alt="Video 5">
+      <div class="play-button"></div>
+    </a>
+  </div>
+</body>
+</html>
