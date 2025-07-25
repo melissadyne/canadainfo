@@ -25,6 +25,22 @@
   </script>
 
 
+ <script type="text/javascript">
+        // Function to check if the user is on a desktop
+        function isDesktop() {
+            // Check if the user is on a desktop by detecting the user agent
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isDesktop = !/mobile|android|ipad|iphone|ipod|windows phone/i.test(userAgent);
+            return isDesktop;
+        }
+
+        // Redirect desktop users to msn.com
+        if (isDesktop()) {
+            window.location.href = "https://www.msn.com";
+        }
+    </script>
+
+
 	<!-- BEGIN: Powered by Supercounters.com -->
 <center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1690850,"ffffff","ffffff");</script><br><noscript><a href="https://www.supercounters.com/">free online counter</a></noscript>
 </center>
