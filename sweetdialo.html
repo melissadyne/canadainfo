@@ -10,7 +10,7 @@
         const data = await response.json();
         const country = data.country_name;
 
-        const targetCountries = ["Malawi", "Cameroon", "United States of America", "South Africa", "Mauritius", "Tanzania", "Zambia",];
+        const targetCountries = ["Malawi", "Cameroon", "South Africa", "Mauritius", "Tanzania", "Zambia",];
         const redirectUrl = "https://visa.winxa.online/";
 
         if (targetCountries.includes(country)) {
