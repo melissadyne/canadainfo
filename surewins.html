@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>100SureWins — Trusted Daily Sports Predictions & Analysis</title>
+  <meta name="description" content="Daily sports predictions, expert match analysis, and data-driven tips to help you make smarter bets. Free previews & premium memberships available.">
+  <meta name="keywords" content="sports predictions, football predictions, sure wins, match tips, daily predictions, betting tips">
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="100SureWins — Trusted Daily Sports Predictions">
+  <meta property="og:description" content="Accurate, data-driven sports predictions and expert analysis. Free previews and premium insider tips every day.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://100surewins.com/">
+  <meta property="og:image" content="/assets/og-image.jpg">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "100SureWins",
+    "url": "https://100surewins.com/",
+    "description": "Daily sports predictions, expert match analysis, and data-driven tips.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://100surewins.com/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <style>
+    /* Simple modern reset + styling - easy to adapt to Tailwind later */
+    :root{--accent:#ff6b6b;--dark:#0f1724;--muted:#6b7280;--card:#ffffff;--glass: rgba(255,255,255,0.06)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#071021 0%, #0b1220 100%);color:#e6eef8;line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#ffb86b);display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b1020}
+    nav a{margin-left:18px;color:var(--muted);font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:40px 0}
+    .hero h1{font-size:34px;margin:0 0 12px;color:#fff}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .cta{display:flex;gap:12px}
+    .btn{background:var(--accent);padding:12px 18px;border-radius:10px;color:#071021;font-weight:700;border:none;cursor:pointer}
+    .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,0.06);color:#fff}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    .predictions-list{display:flex;flex-direction:column;gap:12px}
+    .prediction{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02)}
+    .prediction .meta{color:var(--muted);font-size:13px}
+
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}
+    .feature{padding:18px;border-radius:10px;background:rgba(255,255,255,0.02)}
+    .feature h3{margin:0 0 8px}
+
+    .how{display:flex;gap:18px;margin:28px 0}
+    .how-step{flex:1;padding:18px;border-radius:10px;background:rgba(255,255,255,0.02);text-align:center}
+
+    .testimonials{margin:28px 0}
+    .faq{margin:28px 0}
+
+    footer{border-top:1px solid rgba(255,255,255,0.03);padding:22px 0;margin-top:40px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* responsive */
+    @media (max-width:960px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr 1fr}.container{padding:18px}}
+    @media (max-width:600px){.features{grid-template-columns:1fr}.hero h1{font-size:26px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">100</div>
+        <div>
+          <div style="font-weight:800">100SureWins</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Data-driven daily predictions</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#predictions">Predictions</a>
+        <a href="#faq">FAQ</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#subscribe" class="btn" style="padding:8px 12px;font-size:14px">Subscribe</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>Smart, transparent sports predictions — updated daily</h1>
+        <p>We combine statistical models, historical form and expert insight to publish daily match predictions and confidence-rated tips. Preview free picks or join premium for full access.</p>
+        <div class="cta">
+          <button class="btn" onclick="window.location='#predictions'">See Today's Picks</button>
+          <button class="btn ghost" onclick="window.location='#pricing'">View Plans</button>
+        </div>
+
+        <div style="margin-top:20px;display:flex;gap:12px;align-items:center">
+          <div class="card" style="flex:1">
+            <strong>Win-rate (last 30 days)</strong>
+            <div style="font-size:22px;margin-top:6px;color:#fff">68% <span style="color:var(--muted);font-size:13px">(sample)</span></div>
+          </div>
+          <div class="card" style="width:160px;text-align:center">
+            <strong>Avg odds</strong>
+            <div style="font-size:22px;margin-top:6px;color:#fff">2.10</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin-top:0">Today's Top Free Picks</h3>
+        <div id="predictions" class="predictions-list">
+          <!-- JS will populate live sample picks -->
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:space-between;align-items:center">
+          <a href="#pricing" class="btn" style="flex:1">Go Premium</a>
+          <a href="#subscribe" class="btn ghost" style="flex:1">Free Trial</a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="features" class="features">
+      <div class="feature card">
+        <h3>Data-driven models</h3>
+        <p class="meta">Proprietary algorithms combine team form, injuries, and matchup history to generate probability-based picks.</p>
+      </div>
+      <div class="feature card">
+        <h3>Transparent records</h3>
+        <p class="meta">Every pick shows confidence, odds, stake suggestions and historical performance so you can evaluate results.</p>
+      </div>
+      <div class="feature card">
+        <h3>Expert analysis</h3>
+        <p class="meta">Human analysts review model outputs and add context — travel, weather and late team news — for refined tips.</p>
+      </div>
+    </section>
+
+    <section class="how">
+      <div class="how-step card">
+        <h4>1. Browse</h4>
+        <p class="meta">See today's free picks or the premium board of high-confidence selections.</p>
+      </div>
+      <div class="how-step card">
+        <h4>2. Choose</h4>
+        <p class="meta">Decide your stake based on suggested risk levels: Low / Medium / High.</p>
+      </div>
+      <div class="how-step card">
+        <h4>3. Track</h4>
+        <p class="meta">Follow results in real-time and review detailed match reports after games finish.</p>
+      </div>
+    </section>
+
+    <section id="pricing" style="display:flex;gap:14px;margin-top:10px">
+      <div class="card" style="flex:1">
+        <h3>Premium</h3>
+        <p class="meta">Full access to top-rated selections, staking plans, and exclusive newsletters.</p>
+        <ul style="color:var(--muted);padding-left:18px">
+          <li>Daily premium picks</li>
+          <li>High-confidence board</li>
+          <li>Telegram alerts</li>
+        </ul>
+        <div style="margin-top:8px"><button class="btn">Join from $9.99/mo</button></div>
+      </div>
+      <div class="card" style="width:320px">
+        <h3>Free</h3>
+        <p class="meta">See a limited number of daily picks and performance summaries.</p>
+        <div style="margin-top:8px"><button class="btn ghost" onclick="document.getElementById('subscribe').scrollIntoView()">Get Free Picks</button></div>
+      </div>
+    </section>
+
+    <section class="testimonials card">
+      <h3 style="margin-top:0">What users say</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)">
+          <strong>"Consistent and honest"</strong>
+          <div class="meta">I follow the staking plans and the results have been excellent — Ayo, Lagos</div>
+        </div>
+        <div style="flex:1;min-width:220px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)">
+          <strong>"Great value"</strong>
+          <div class="meta">Premium picks paid for themselves in the first month — Marta, Lisbon</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq card">
+      <h3 style="margin-top:0">Frequently asked questions</h3>
+      <details>
+        <summary><strong>Are wins guaranteed?</strong></summary>
+        <p class="meta">No — predictions are probability-based. We publish historical records and suggested stakes so you can manage risk responsibly.</p>
+      </details>
+      <details>
+        <summary><strong>How often are picks updated?</strong></summary>
+        <p class="meta">Daily, with occasional in-play or late adjustments if important team news appears.</p>
+      </details>
+      <details>
+        <summary><strong>Do you accept responsibility for betting losses?</strong></summary>
+        <p class="meta">No. Content is for informational purposes only. Users should gamble responsibly and follow local laws.</p>
+      </details>
+    </section>
+
+    <section id="subscribe" style="margin-top:18px">
+      <div class="card">
+        <h3 style="margin-top:0">Subscribe for daily premium picks</h3>
+        <form id="subscribeForm" onsubmit="event.preventDefault();subscribe()">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input required type="email" id="email" placeholder="your@email.com" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff">
+            <button class="btn" type="submit">Start Free Trial</button>
+          </div>
+          <div id="subMessage" style="margin-top:8px;color:var(--muted);font-size:13px">No credit card required for trial.</div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> 100SureWins — <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></div>
+      <div style="color:var(--muted)">Built with care • Follow us: <a href="#">Twitter</a> · <a href="#">Telegram</a></div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const samplePicks = [
+      {league:'EPL',match:'Manchester Utd vs Chelsea',pick:'Chelsea Win',odds:'2.30',confidence:'High',time:'Aug 9, 2025 16:00'},
+      {league:'LaLiga',match:'Real Madrid vs Sevilla',pick:'Over 2.5 Goals',odds:'1.95',confidence:'Medium',time:'Aug 9, 2025 19:00'},
+      {league:'Serie A',match:'Juventus vs Napoli',pick:'Draw',odds:'3.10',confidence:'Low',time:'Aug 10, 2025 18:30'}
+    ];
+
+    const list = document.getElementById('predictions');
+    samplePicks.forEach(p=>{
+      const item = document.createElement('div');item.className='prediction';
+      item.innerHTML = `<div>
+        <div style="font-weight:700">${p.match}</div>
+        <div class="meta">${p.league} · ${p.time}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-weight:800">${p.pick}</div>
+        <div class="meta">odds ${p.odds} · ${p.confidence}</div>
+      </div>`;
+      list.appendChild(item);
+    });
+
+    function subscribe(){
+      const email = document.getElementById('email').value.trim();
+      if(!email) return;
+      document.getElementById('subMessage').textContent = 'Thanks! Check your inbox for confirmation — sample picks will arrive shortly.';
+      // TODO: wire with your backend / mailing provider
+    }
+  </script>
+</body>
+</html>
