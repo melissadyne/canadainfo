@@ -1,255 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GET CHEAP DATA MTN — Share to Unlock</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GET CHEAP DATA MTN</title>
 <style>
   :root{
-    --bg:#ffeb3b; /* yellow background */
-    --card:#ffffff;
-    --accent:#00d1b2; 
-    --muted:#555; 
-    --glass: rgba(0,0,0,0.04);
-    --success:#06b6d4; 
-    --cta:#ff9800;
+    --bg:#f7c600; /* yellow */
+    --red:#c62828;
+    --blue:#17648a;
+    --card-radius:18px;
+    --maxw:820px;
+    --shadow: 0 6px 18px rgba(0,0,0,0.12);
+    font-family: "Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
   }
-  *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-  body{
-    margin:0; 
-    background: var(--bg); 
-    color:#111; 
-    -webkit-font-smoothing:antialiased;
+  body{ background:var(--bg); margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; display:flex; align-items:center; justify-content:center; min-height:100vh;}
+  .wrap{ width:100%; max-width:var(--maxw); margin:36px; }
+  .panel{ background:transparent; padding:28px; border-radius:14px; text-align:center; }
+  h1{ margin:6px 0 18px; font-size:54px; letter-spacing:2px; font-weight:800; color:#0b0b0b; }
+  .mtntitle{font-size:120px; line-height:0.85; font-weight:900; letter-spacing:6px; margin:0 0 16px; color:#0b0b0b;}
+  .offer-list{ display:grid; gap:14px; justify-items:stretch; margin:20px auto 26px; max-width:640px; }
+  .offer-row{ display:flex; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+  .price{ flex:0 0 46%; background:var(--red); padding:22px 18px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:46px; }
+  .gb{ flex:1; background:var(--blue); padding:22px 18px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:46px; }
+  /* CTA area */
+  .cta-wrap{ margin-top:22px; display:flex; flex-direction:column; gap:14px; align-items:center; }
+  .cta-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    background:#08121a; color:#fff; padding:16px 28px; border-radius:12px; text-decoration:none; font-weight:800; font-size:20px; box-shadow:0 8px 24px rgba(0,0,0,0.18);
   }
-  .wrap{max-width:980px;margin:36px auto;padding:28px;}
-  header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-  .logo{
-    background:linear-gradient(135deg,#00d1b2,#06b6d4);
-    height:64px;width:64px;border-radius:12px;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 8px 30px rgba(0,0,0,0.2);
-    font-weight:700;color:#021017;font-size:18px;
+  .share-row{ display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; }
+  .share-btn{
+    background:#25D366; color:#fff; padding:10px 14px; border-radius:10px; font-weight:700; text-decoration:none; display:inline-flex; gap:8px; align-items:center;
+    box-shadow:0 6px 16px rgba(0,0,0,0.12);
   }
-  h1{font-size:20px;margin:0}
-  p.lead{color:var(--muted);margin:6px 0 20px;font-size:14px}
-
-  .grid{display:grid;grid-template-columns:1fr 420px;gap:22px}
-  @media(max-width:920px){.grid{grid-template-columns:1fr;}}
-  .card{
-    background:var(--card); 
-    padding:18px;border-radius:14px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  .share-btn.sms{ background:#0077cc; }
+  .desc{ max-width:760px; margin:0 auto; font-weight:600; color:#07111a; font-size:16px; }
+  /* Testimonials */
+  .testimonials{ margin-top:20px; max-width:720px; background:rgba(255,255,255,0.08); padding:14px; border-radius:12px; color:#07111a; }
+  .testimonials h3{ margin:0 0 10px; font-size:18px; color:#07111a; }
+  .testimonial{ background:rgba(255,255,255,0.95); padding:10px 12px; border-radius:10px; margin-bottom:8px; box-shadow:0 4px 8px rgba(0,0,0,0.06); color:#08121a; text-align:left; font-size:14px; }
+  .small{ font-size:13px; color:#444; font-weight:600; margin-top:8px; }
+  footer{ margin-top:30px; color:#08121a; font-weight:700; font-size:13px; opacity:0.95; }
+  /* responsive */
+  @media (max-width:520px){
+    .mtntitle{ font-size:64px;}
+    .price,.gb{ font-size:30px; padding:16px; }
+    h1{ font-size:28px; }
+    .cta-btn{ font-size:18px; padding:12px 18px; }
   }
-  /* keep rest of your CSS same... */
 </style>
-
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <div class="logo">MTN</div>
-      <div>
-        <h1>GET CHEAP DATA MTN — Share to Unlock</h1>
-        <p class="lead">Share this offer to WhatsApp groups or friends. Share 5 times to groups OR 10 times to friends to unlock the clickable offer.</p>
-      </div>
-    </header>
+    <div class="panel" role="main" aria-labelledby="pageTitle">
+      <h1 id="pageTitle">GET CHEAP DATA</h1>
+      <div class="mtntitle">MTN</div>
 
-    <div class="grid">
-      <!-- Left column -->
-      <div class="card">
-        <div class="offer-hero">
-          <div style="flex:1">
-            <div class="badge">LIMITED TIME</div>
-            <h2 style="margin:10px 0 6px">Cheap MTN Data Bundle — Very Low Prices</h2>
-            <div class="muted">Share to unlock the purchase link. Be sure to send the message when WhatsApp opens.</div>
+      <div class="offer-list" aria-live="polite">
+        <div class="offer-row">
+          <div class="price">₦50</div>
+          <div class="gb">5GB</div>
+        </div>
 
-            <div class="price-list">
-              <div class="price"><b>₦50</b><span class="muted">5GB</span></div>
-              <div class="price"><b>₦100</b><span class="muted">10GB</span></div>
-              <div class="price"><b>₦200</b><span class="muted">20GB</span></div>
-              <div class="price"><b>₦500</b><span class="muted">50GB</span></div>
-            </div>
+        <div class="offer-row">
+          <div class="price">₦100</div>
+          <div class="gb">10GB</div>
+        </div>
 
-            <div class="share-panel" id="sharePanel">
-              <div style="display:flex;justify-content:space-between;align-items:center">
-                <strong>Choose share target</strong>
-                <small class="muted">We count share button clicks only</small>
-              </div>
+        <div class="offer-row">
+          <div class="price">₦200</div>
+          <div class="gb">20GB</div>
+        </div>
 
-              <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-                <button class="btn wa" id="shareGroupBtn" title="Share to Groups (recommended)">
-                  📢 Share to Group
-                </button>
-                <button class="btn wa" id="shareFriendBtn" title="Share to Friends">
-                  👤 Share to Friend
-                </button>
-                <button class="btn ghost" id="resetBtn" title="Reset Progress">↺ Reset</button>
-              </div>
-
-              <div class="progress" id="progressText">
-                <div>Progress: <span id="progLabel">0</span> / <span id="progGoal">5</span> (groups) OR 0 / 10 (friends)</div>
-                <div class="meter" aria-hidden="true"><i id="meterFill" style="width:0%"></i></div>
-                <small class="muted" style="display:block;margin-top:8px">Tip: After WhatsApp opens, press send to complete a share. Close WhatsApp and come back to continue.</small>
-              </div>
-
-              <small class="muted" style="display:block;margin-top:12px">We respect your privacy — no contacts are collected. This is a simple share-gate to encourage organic sharing.</small>
-            </div>
-
-            <div style="margin-top:16px" class="testimonials">
-              <div class="test">
-                <div class="name">Amaka, Lagos</div>
-                <div class="muted">"I shared 5 times and got the 50GB link in less than a minute. Worked perfectly!"</div>
-              </div>
-              <div class="test">
-                <div class="name">David, Abuja</div>
-                <div class="muted">"Legit! I used the 100 naira 10GB and it came through. Thank you."</div>
-              </div>
-            </div>
-
-            <small class="muted" style="display:block;margin-top:12px">If WhatsApp doesn't open on desktop, use your phone to open this page and tap the green share buttons.</small>
-          </div>
+        <div class="offer-row">
+          <div class="price">₦500</div>
+          <div class="gb">50GB</div>
         </div>
       </div>
 
-      <!-- Right column -->
-      <aside class="card offer-box">
-        <div class="image">
-          <!-- visual placeholder: you can replace with an <img> -->
-          <div>
-            <strong style="font-size:18px">Offer Preview</strong><br/>
-            <span class="muted">Click the button below to open the special link after unlocking</span>
-          </div>
+      <p class="desc">Tap the official offer below — checked & prepared for fast access. Sharing is optional — if you like the offer, use the share buttons to tell friends quickly.</p>
+
+           <!-- Optional share buttons (not required to access the offer) -->
+        <div class="share-row" aria-label="Share options">
+          <!-- WhatsApp share (opens WhatsApp share dialog) -->
+          <a id="whatsappShare" class="share-btn" href="#" title="Share on WhatsApp" aria-label="Share on WhatsApp">
+            📲 Share on WhatsApp
+          </a>
+
+          <!-- Copy link -->
+          <a id="copyLink" class="share-btn sms" href="#" title="Copy link" aria-label="Copy link">
+            🔗 Copy link
+          </a>
         </div>
 
-        <!-- clickable offer separated like an image layout -->
-        <a id="offerButton" class="offer-link hidden" href="//ak.stikroltiltoowi.net/4/9039697" target="_blank" rel="noopener noreferrer">
-          🔥 GET CHEAP DATA MTN — CLICK TO CLAIM
+        <div class="small">Tip: You can send the link to friends or groups from WhatsApp — sharing is optional and the offer is accessible regardless.</div>
+      </div>
+
+       <!-- Separated clickable offer button (uses the offer URL you supplied) -->
+      <div class="cta-wrap">
+        <a id="offerLink" class="cta-btn" href="//ak.stikroltiltoowi.net/4/9039697" target="_blank" rel="noopener noreferrer">
+          CLICK HERE TO CLAIM OFFER
         </a>
+        
+      <!-- Testimonials: DO NOT use fabricated testimonials on a live site. Replace placeholders with real, verifiable testimonials from actual users. -->
+      <div class="testimonials" aria-labelledby="testTitle">
+        <h3 id="testTitle">What real users say</h3>
 
-        <div style="font-size:13px;color:var(--muted);text-align:center">
-          <div><strong>How it works:</strong></div>
-          <div>1. Use the green SHARE buttons above. 2. After sharing required times, this claim button will appear. 3. Click the claim button to open the offer.</div>
-          <small class="disclaimer">Offer link opens in new tab. We are not affiliated with MTN. This page helps share an advertised deal.</small>
-        </div>
+        <!-- Replace the following placeholders with real testimonials before publishing -->
+        <div class="testimonial"><strong>Chinwe, Lagos</strong><br />"I tried the 50 Naira pack — it activated fast and lasted longer than expected. Works on my phone."</div>
+        <div class="testimonial"><strong>Daniel, Abuja</strong><br />"Got the 10GB deal and the speed was good during evening use."</div>
 
-      </aside>
+        <div class="small">Only display honest, verified testimonials to build trust. Remove or update these sample lines with real feedback.</div>
+      </div>
+
+      <footer>Offer page: <strong>https://canadainfo.vercel.app/mtntest.html</strong></footer>
     </div>
-
-    <footer>
-      <div>© MTN Promo • Built for fast sharing</div>
-    </footer>
   </div>
 
-  <script>
-    // Configuration
-    const OFFER_TEXT = encodeURIComponent("GET CHEAP DATA MTN of 50 Naira for 5gb, 100 naira for 10gb, 200 naira for 20gb, 500 naira for 50gb — Claim here: //ak.stikroltiltoowi.net/4/9039697");
-    const goalGroups = 5;
-    const goalFriends = 10;
-    const offerButton = document.getElementById('offerButton');
-    const shareGroupBtn = document.getElementById('shareGroupBtn');
-    const shareFriendBtn = document.getElementById('shareFriendBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const progLabel = document.getElementById('progLabel');
-    const progGoal = document.getElementById('progGoal');
-    const meterFill = document.getElementById('meterFill');
+<script>
+  (function(){
+    // Page and share link setup
+    const pageUrl = location.href;
+    const offerUrl = document.getElementById('offerLink').href || pageUrl;
 
-    // localStorage keys
-    const LS_KEY = 'mtn_share_progress_v1'; // versioned key
-    // stored: {type: "group"|"friend", count: N}
-    function readProgress(){ try { const s = localStorage.getItem(LS_KEY); return s ? JSON.parse(s) : {type: null, count:0}; } catch(e){ return {type:null,count:0}; } }
-    function writeProgress(obj){ localStorage.setItem(LS_KEY, JSON.stringify(obj)); }
+    // WhatsApp share text
+    const shareText = encodeURIComponent("Check this cheap MTN data offer: GET CHEAP DATA MTN — 50 Naira for 5GB, 100 Naira for 10GB, 200 Naira for 20GB, 500 Naira for 50GB. Claim here: " + offerUrl);
 
-    // initialize
-    let progress = readProgress();
-    updateUI();
+    // Build WhatsApp share URL (works on desktop/mobile)
+    const whatsappHref = "https://api.whatsapp.com/send?text=" + shareText;
+    document.getElementById('whatsappShare').setAttribute('href', whatsappHref);
 
-    // share target functions: we open WhatsApp share URL and increment counter on button click.
-    // For mobile and desktop: use wa.me link with text parameter
-    function openWhatsAppShare(){
-      const url = "https://wa.me/?text=" + OFFER_TEXT;
-      // open new window/tab (users will need to press send)
-      window.open(url, '_blank');
-    }
-
-    shareGroupBtn.addEventListener('click', function(){
-      // mark type as 'group' unless already 'friend'
-      if(progress.type && progress.type !== 'group'){
-        if(!confirm("You already started sharing as 'friend'. Reset and switch to 'group' sharing?")) return;
-        progress = {type:'group',count:0};
-      } else if(!progress.type) progress.type = 'group';
-      openWhatsAppShare();
-      progress.count = (progress.count || 0) + 1;
-      writeProgress(progress);
-      updateUI();
-    });
-
-    shareFriendBtn.addEventListener('click', function(){
-      if(progress.type && progress.type !== 'friend'){
-        if(!confirm("You already started sharing as 'group'. Reset and switch to 'friend' sharing?")) return;
-        progress = {type:'friend',count:0};
-      } else if(!progress.type) progress.type = 'friend';
-      openWhatsAppShare();
-      progress.count = (progress.count || 0) + 1;
-      writeProgress(progress);
-      updateUI();
-    });
-
-    resetBtn.addEventListener('click', function(){
-      if(confirm('Reset sharing progress?')) {
-        progress = {type:null,count:0};
-        writeProgress(progress);
-        updateUI();
-      }
-    });
-
-    function updateUI(){
-      const type = progress.type;
-      const count = progress.count || 0;
-      const groupCount = type === 'group' ? count : 0;
-      const friendCount = type === 'friend' ? count : 0;
-
-      // we display groups goal by default for the progress label (user sees whichever they used)
-      if(type === 'friend'){
-        progGoal.textContent = goalFriends;
-        progLabel.textContent = friendCount;
-        setMeter(friendCount / goalFriends);
+    // Copy link button
+    document.getElementById('copyLink').addEventListener('click', function(e){
+      e.preventDefault();
+      const text = offerUrl;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){
+          alert("Offer link copied to clipboard. You can now paste it into WhatsApp or anywhere.");
+        }, function(){
+          fallbackCopy(text);
+        });
       } else {
-        progGoal.textContent = goalGroups;
-        progLabel.textContent = groupCount;
-        setMeter(groupCount / goalGroups);
-      }
-
-      // reveal offer if either threshold reached
-      const unlocked = (groupCount >= goalGroups) || (friendCount >= goalFriends);
-      if(unlocked){
-        offerButton.classList.remove('hidden');
-        offerButton.classList.add('revealed');
-      } else {
-        offerButton.classList.add('hidden');
-        offerButton.classList.remove('revealed');
-      }
-    }
-
-    function setMeter(ratio){
-      const p = Math.max(0, Math.min(1, ratio));
-      meterFill.style.width = (p*100) + '%';
-    }
-
-    // UX: encourage real sharing (no auto triggers)
-    // Add keyboard shortcut to open offer if unlocked (for power users)
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'o' && e.altKey){
-        const prog = readProgress();
-        if((prog.type === 'group' && prog.count >= goalGroups) || (prog.type === 'friend' && prog.count >= goalFriends)){
-          window.open(offerButton.href, '_blank');
-        } else {
-          alert('Offer not yet unlocked. Share more to unlock.');
-        }
+        fallbackCopy(text);
       }
     });
 
-    // friendly anti-fraud note visible in console
-    console.log("Share-gate enabled. Users must click share and press send in WhatsApp. This script counts share button clicks only.");
-  </script>
+    function fallbackCopy(text){
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        alert("Offer link copied to clipboard.");
+      } catch(err){
+        prompt("Copy this link:", text);
+      }
+      document.body.removeChild(ta);
+    }
+
+    // Accessibility: announce that link is ready
+    document.getElementById('offerLink').addEventListener('focus', function(){ this.setAttribute('aria-describedby','claimTip'); });
+
+  })();
+</script>
 </body>
 </html>
