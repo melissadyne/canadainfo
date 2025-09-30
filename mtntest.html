@@ -4,62 +4,45 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>GET CHEAP DATA MTN — Share to Unlock</title>
-  <style>
-    :root{
-      --bg:#0b1221; --card:#0f1724; --accent:#00d1b2; --muted:#94a3b8; --glass: rgba(255,255,255,0.04);
-      --success:#06b6d4; --cta:#ffce00;
-    }
-    *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-    body{margin:0; background: linear-gradient(180deg,#071026 0%, #07162a 60%); color:#e6eef8; -webkit-font-smoothing:antialiased;}
-    .wrap{max-width:980px;margin:36px auto;padding:28px;}
-    header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-    .logo{
-      background:linear-gradient(135deg,#00d1b2,#06b6d4);height:64px;width:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-      box-shadow:0 8px 30px rgba(2,6,23,0.6);
-      font-weight:700;color:#021017;font-size:18px;
-    }
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 20px;font-size:14px}
+<style>
+  :root{
+    --bg:#ffeb3b; /* yellow background */
+    --card:#ffffff;
+    --accent:#00d1b2; 
+    --muted:#555; 
+    --glass: rgba(0,0,0,0.04);
+    --success:#06b6d4; 
+    --cta:#ff9800;
+  }
+  *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  body{
+    margin:0; 
+    background: var(--bg); 
+    color:#111; 
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:36px auto;padding:28px;}
+  header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .logo{
+    background:linear-gradient(135deg,#00d1b2,#06b6d4);
+    height:64px;width:64px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 30px rgba(0,0,0,0.2);
+    font-weight:700;color:#021017;font-size:18px;
+  }
+  h1{font-size:20px;margin:0}
+  p.lead{color:var(--muted);margin:6px 0 20px;font-size:14px}
 
-    .grid{display:grid;grid-template-columns:1fr 420px;gap:22px}
-    @media(max-width:920px){.grid{grid-template-columns:1fr;}}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px;border-radius:14px;box-shadow: 0 6px 30px rgba(2,6,23,0.5);}
-    .offer-hero{display:flex;gap:14px;align-items:center}
-    .badge{background:var(--accent);padding:8px 12px;border-radius:10px;color:#012023;font-weight:700;font-size:13px}
-    .price-list{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
-    .price{background:var(--glass);padding:12px;border-radius:10px;min-width:120px;text-align:center}
-    .price b{display:block;font-size:18px}
-    .muted{color:var(--muted);font-size:13px}
+  .grid{display:grid;grid-template-columns:1fr 420px;gap:22px}
+  @media(max-width:920px){.grid{grid-template-columns:1fr;}}
+  .card{
+    background:var(--card); 
+    padding:18px;border-radius:14px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+  }
+  /* keep rest of your CSS same... */
+</style>
 
-    /* Share panel */
-    .share-panel{margin-top:16px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01))}
-    .share-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .btn{
-      background:#fff;color:#0b1221;border:0;padding:10px 12px;border-radius:10px;font-weight:600;cursor:pointer;display:inline-flex;gap:8px;align-items:center;
-      box-shadow:0 6px 18px rgba(2,6,23,0.35);text-decoration:none;
-    }
-    .btn.wa{background:linear-gradient(135deg,#25D366,#128C7E);color:white;}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-
-    .progress{margin-top:14px;font-size:14px}
-    .meter{height:10px;border-radius:999px;background:rgba(255,255,255,0.06);overflow:hidden;margin-top:8px}
-    .meter > i{display:block;height:100%;background:linear-gradient(90deg,var(--cta),var(--success));width:0%}
-
-    /* Right column (offer box) */
-    .offer-box{display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;padding:20px;text-align:center}
-    .offer-box .image{height:160px;width:100%;border-radius:12px;background:linear-gradient(135deg,#07162a,#021017);display:flex;align-items:center;justify-content:center; font-size:15px;color:var(--muted);border:1px solid rgba(255,255,255,0.03)}
-    .offer-link{display:block;padding:14px 18px;border-radius:12px;background:linear-gradient(90deg,#ffce00,#ffb020);color:#081218;font-weight:800;text-decoration:none;box-shadow:0 10px 30px rgba(255,192,60,0.12)}
-    .offer-link.hidden{opacity:0.02;pointer-events:none;transform:translateY(8px);transition:all .3s}
-    .offer-link.revealed{opacity:1;transform:none;transition:all .3s}
-
-    /* testimonials */
-    .testimonials{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-    @media(max-width:720px){.testimonials{grid-template-columns:1fr}}
-    .test{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;font-size:13px}
-    .test .name{font-weight:700;margin-bottom:6px}
-    footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
-    small.disclaimer{display:block;color:#ffefc7;background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;margin-top:12px}
-  </style>
 </head>
 <body>
   <div class="wrap">
