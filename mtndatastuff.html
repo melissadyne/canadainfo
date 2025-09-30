@@ -26,253 +26,392 @@ src="https://www.facebook.com/tr?id=1315042809627793&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
   
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Select Your Network</title>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #f7f7f7, #e0f7fa);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    /* Screen wrapper */
-    .screen {
-      display: none;
-      text-align: center;
-      padding: 20px;
-      background: #007BFF;
-      border-radius: 16px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.1);
-      width: 90%;
-      max-width: 420px;
-      color: white;
-    }
-    .active { display: block; }
-
-    /* First screen grid layout */
-    #networkScreen h2 {
-      font-size: 28px;
-      margin-bottom: 25px;
-      color: #fff;
-    }
-    .network-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    /* Square card design */
-    .network-option {
-      background: white;
-      border-radius: 15px;
-      padding: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 120px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    .network-option:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-    }
-
-    /* Logo styling */
-    .network-option img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-      margin-bottom: 8px;
-    }
-    .network-option span {
-      font-size: 16px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    /* Network-specific border colors */
-    .mtn { border: 2px solid #ffcc00; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f7f7f7 0%, #e0f7fa 50%, #d1e7ff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+  }
   
+  /* Animated background elements */
+  body::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 极速飞艇公众号飞单-【awe.net】复制打开★ 0%, rgba(255,255,255,0) 60%);
+    opacity: 0.3;
+    animation: pulse 25s infinite linear;
+    z-index: -1;
+  }
+  
+  @keyframes pulse {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .screen {
+    display: none;
+    text-align: center;
+    padding: 35px 30px;
+    background: linear-gradient(to bottom, #007BFF, #0062cc);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+    width: 90%;
+   极速飞艇公众号飞单-【awe.net】复制打开★ max-width: 450px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .screen::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
+    z-index: -1;
+    animation: shine 3s infinite linear;
+    pointer-events: none;
+  }
+  
+  @keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  .active { display: block; animation: fadeIn 0.5s ease; }
+  
+  @极速飞艇公众号飞单-【awe.net】复制打开★ keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 26px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  .network-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .network-option {
+    padding: 18px 15px;
+    color: white;
+    font-size: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    border: none;
+  }
+  
+  .network-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .network-option:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+  
+  .network-option:hover::before {
+    opacity: 1;
+  }
+  
+  .network-option:active {
+    transform: translateY(1px);
+  }
+  
+  .mtn { background: linear-gradient(to bottom, #ffcc00, #e6b800); color: #222; }
+  .airtel { background: linear-gradient(to bottom, #e60000, #b30000); }
+  .glo { background: linear-gradient(to bottom, #009900, #007700); }
+  .etisalat { background: linear-gradient(to bottom, #6e0d8a, #4f0964); }
 
-    /* Improved verification screen */
-    #verificationScreen h2 {
-      font-size: 24px;
-      margin-bottom: 25px;
-      color: #fff;
-    }
+  .loader {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+  
+  .checkmark {
+    color: #7cff7c;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+    animation: pop极速飞艇公众号飞单-【awe.net】复制打开★ In 0.5s ease;
+  }
+  
+  @keyframes popIn {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  .step {
+    margin: 22px 0;
+    font-size: 极速飞艇公众号飞单-【awe.net】复制打开★ 18px;
+    color: white;
+    text-align: left;
+    padding-left: 10px;
+    border-left: 3px solid rgba(255极速飞艇公众号飞单-【awe.net】复制打开★,255,255,0.3);
+    transition: all 0.5s ease;
+  }
+  
+  .step.completed {
+    border-left-color: #7cff7c;
+  }
 
-    /* Animated circular loader */
-    .circle-loader {
-      width: 80px;
-      height: 80px;
-      border: 6px solid rgba(255,255,255,0.3);
-      border-top: 6px solid #fff;
-      border-radius: 50%;
-      margin: 0 auto 20px;
-      animation: spin 1.2s linear infinite;
-    }
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 999;
+    color: white;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.85);
+    animation: fadeIn 0.5s ease;
+  }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+  .overlay h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #ffdd99;
+    text-shadow: 0 2px 10px rgba(255, 221, 153, 0.5);
+  }
 
-    /* Progress steps */
-    .progress-steps {
-      text-align: left;
-      margin-top: 15px;
+  .overlay p {
+    color: white;
+    margin: 10px 0;
+  }
+
+  .overlay .popup-box {
+    background: linear-gradient(to bottom, #006ae0, #0052b3);
+    border-radius: 16px;
+    padding: 35px 30px;
+    max-width: 90%;
+    width: 400px;
+    box-shadow: 0 15px 35px rgba(0, 106, 224, 0.4);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .overlay .popup-box::after {
+    content: '🎉';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    font-size: 150px;
+    opacity: 0.1;
+    transform: rotate(15deg);
+    z-index: -1;
+  }
+  
+  .claim-button {
+    margin-top: 25px;
+    padding: 16px 35px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(to right, #ff9900, #ff7700);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 8px 极速飞艇公众号飞单-【awe.net】复制打开★ 20px rgba(255,153,0,0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .claim-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+  }
+  
+  .claim-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255,153,0,0.6);
+  }
+  
+  .claim-button:hover::before {
+    left: 100%;
+  }
+  
+  .claim-button:active {
+    transform: translateY(1px);
+  }
+  
+  #countdownText {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #ffdd99;
+    font-weight: 600;
+  }
+  
+  .privacy-note {
+    margin-top: 20px;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 500px) {
+    .network-options {
+      grid-template-columns: 1fr;
     }
-    .progress-step {
+    
+    .screen {
+      padding: 25px 20px;
+    }
+    
+    h2 {
+      font-size: 22px;
+    }
+    
+    .network-option {
+      padding: 15px;
       font-size: 16px;
-      padding: 10px;
-      margin-bottom: 8px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: white;
-      opacity: 0.6;
-      transition: all 0.4s ease;
     }
-    .progress-step.active {
-      background: rgba(255,255,255,0.25);
-      opacity: 1;
-      font-weight: bold;
-    }
-    .progress-step.done {
-      background: rgba(0,255,0,0.15);
-      color: #00ff00;
-      font-weight: bold;
-    }
-
-    /* Checkmark animation */
-    .checkmark {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      display: inline-block;
-      border: 2px solid #00ff00;
-      position: relative;
-      animation: pop 0.3s ease forwards;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.3); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .checkmark::after {
-      content: "";
-      position: absolute;
-      left: 5px;
-      top: 1px;
-      width: 5px;
-      height: 10px;
-      border: solid #00ff00;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
-
-    /* Final Overlay */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      z-index: 999;
-      color: white;
-      flex-direction: column;
-    }
-    .overlay h2 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #ffdd99;
-    }
-    .overlay p { color: white; }
-
+    
     .overlay .popup-box {
-      background: #006ae0;
-      border-radius: 12px;
-      padding: 30px;
-      max-width: 90%;
-      box-shadow: 0 0 25px rgba(0,0,0,0.2);
-      text-align: center;
+      padding: 25px 20px;
     }
-    .claim-button {
-      margin-top: 25px;
-      padding: 15px 30px;
-      font-size: 18px;
-      background: #ff9900;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255,153,0,0.4);
-      transition: background 0.3s ease;
+    
+    .overlay h2 {
+      font-size: 26px;
     }
-    .claim-button:hover { background: #e68a00; }
-  </style>
-<link rel="me" href="https://www.blogger.com/profile/16608323001025005589" />
+  }
+</style>
+  <link rel="me" href="https://www.blogger.com/profile/16608323001025005589">
+  <meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
+  <meta name="google-adsense-platform-domain" content="blogspot.com">
+  <link rel="me" href="https://www.blogger.com/profile/10362131496008529154">
+  <meta name="google-adsense-platform-account" content="ca-host-pub-155622335513极速飞艇公众号飞单-【awe.net】复制打开★ 9109">
+  <meta name="google-adsense-platform-domain" content="blogspot.com">
+ <link rel="me" href="https://www.blogger.com/profile/10362131496008529154" />
 <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
 <meta name='google-adsense-platform-domain' content='blogspot.com'/>
 </head>
-<body>
+ <body>
   <!-- First Screen: Network Selection -->
   <div class="screen active" id="networkScreen">
-    <h2>Select Your Network</h2>
-    <div class="network-grid">
-      <div class="network-option mtn" onclick="handleNetworkSelection()">
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpV4AhyImD49W1A8ORYFeENQhyXtih6HckvD_VT5rhgqFgK9tftMlzoDIPfwIgIJ3IeIQuo_t36rOjXSPUUQvpd-e1bS5SO0r4Wi-tFd3Tm1AgW3TwH_wgdpivkXHBL4A5fhGyp0bSB0UkgdHavg_o1nDlcnyLDkFMV8imLKlrMnjWzkNSLv2Xt69SAME/s1600/photo_2025-06-11_19-01-17.jpg" alt="MTN Logo">
-        <span>MTN</span>
-      </div>
-
-      
-    </div>
+   <h2>Select Your Network</h2>
+   <div class="network-options">
+    <button class="network-option mtn" data-network="MTN">MTN Nigeria</button>
+    <button class="network-option airtel" data-network="Airtel">Airtel Nigeria</button>
+    <button class="network-option glo" data-network="Glo">Glo Nigeria</button>
+    <button class="network-option etisalat" data-network="9mobile">9mobile Nigeria</button>
+   </div>
+   <p class="privacy-note">Your selection helps us provide the best offers for your network</p>
   </div>
-
   <!-- Second Screen: Verification -->
   <div class="screen" id="verificationScreen">
-    <h2>Verifying Your Connection...</h2>
-    <div class="circle-loader"></div>
-    <div class="progress-steps">
-      <div class="progress-step active" id="step1">Verifying Network Carrier</div>
-      <div class="progress-step" id="step2">Checking Country</div>
-      <div class="progress-step" id="step3">Checking IP Address</div>
-    </div>
+   <h2>Verifying, please wait...</h2>
+   <div class="step极速飞艇公众号飞单-【awe.net】复制打开★ " id="step1">
+    Verifying your network carrier: <span class="loader" id="loader1"></span>
+   </div>
+   <div class="step" id="step2">
+    Checking your country: <span class="loader" id="loader2"></span>
+   </div>
+   <div class="step" id="step3">
+    Checking eligibility: <span class="loader" id="loader3"></span>
+   </div>
   </div>
-
   <!-- Final Overlay -->
   <div class="overlay" id="congratsOverlay">
-    <div class="popup-box">
-      <h2>🎉 Congratulations!</h2>
-      <p style="font-size: 20px; font-weight: bold;">You are qualified for this promo</p>
-      <p>You will receive additional bonus of 50GB + N10,000 Airtime when you subscribe</p>
-      <button class="claim-button" id="claimBtn" onclick="startRedirect()">SUBSCRIBE NOW</button>
-      <p id="countdownText" style="margin-top: 10px; font-size: 16px;">Claim Promo in (2:59)</p>
-    </div>
+   <div class="popup-box">
+    <h2>🎉 Congratulations!</h2>
+    <p style="font-size: 20px; font-weight: bold;">You are qualified for this promo</p>
+    <button class="claim-button" id="claimBtn">CLAIM OFFER HERE NOW</button>
+    <p id="countdownText">Claim Promo in (2:59)</p>
+    <p class="privacy-note">You will be redirected to the offer page</p>
+   </div>
   </div>
-
+  
   <script>
-    // Countdown timer
     let totalSeconds = 179;
+    let countdownInterval;
     const countdownText = document.getElementById('countdownText');
+    let selectedNetwork = '';
+
+    // Initialize the page
+    function init() {
+      // Add event listeners to network options
+      const networkOptions = document.querySelectorAll('.network-option');
+      networkOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          selectedNetwork = this.getAttribute('data-network');
+          handleNetworkSelection();
+        });
+      });
+      
+      // Add event listener to claim button
+      document.getElementById('claimBtn').addEventListener('click', startRedirect);
+      
+      // Start countdown
+      updateCountdown();
+    }
 
     function formatTime(seconds) {
       const mins = Math.floor(seconds / 60);
@@ -281,63 +420,75 @@ src="https://www.facebook.com/tr?id=1315042809627793&ev=PageView&noscript=1"
     }
 
     function updateCountdown() {
-      countdownText.textContent = `Claim Promo in (${formatTime(totalSeconds)})`;
+      countdownText.textContent = `Time left: ${formatTime(totalSeconds)}`;
       if (totalSeconds > 0) {
         totalSeconds--;
-        setTimeout(updateCountdown, 1000);
+        countdownInterval = setTimeout(updateCountdown, 1000);
+      } else {
+        countdownText.textContent = "Time expired!";
       }
     }
-    updateCountdown();
 
-    // Network Selection
     function handleNetworkSelection() {
+      if (!selectedNetwork) return;
+      
       goToVerification();
+      
+      // Track the selection with Facebook Pixel
+      fbq('track', 'ViewContent', {
+        content_name: selectedNetwork + ' Nigeria',
+        content_category: 'Network Selection'
+      });
     }
 
-    // Animate verification
     function goToVerification() {
       document.getElementById('networkScreen').classList.remove('active');
       document.getElementById('verificationScreen').classList.add('active');
 
-      const steps = [
-        { id: 'step1', delay: 1000 },
-        { id: 'step2', delay: 3000 },
-        { id: 'step3', delay: 5000 }
-      ];
-
-      steps.forEach((step, index) => {
+      setTimeout(() => {
+        document.getElementById('loader1').outerHTML = '<span class="checkmark">✔</span>';
+        document.getElementById('step1').innerHTML += ' ' + selectedNetwork;
+        document.getElementById('step1').classList.add('completed');
+        
         setTimeout(() => {
-          const stepElement = document.getElementById(step.id);
-          stepElement.classList.add('done');
-
-          // Add checkmark
-          stepElement.innerHTML += `<span class="checkmark"></span>`;
-
-          if (steps[index + 1]) {
-            document.getElementById(steps[index + 1].id).classList.add('active');
-          }
-
-          // Final step leads to overlay
-          if (index === steps.length - 1) {
+          document.getElementById('loader2').outerHTML = '<span class="checkmark">✔</span>';
+          document.getElementById('step2').innerHTML += ' Nigeria';
+          document.getElementById('step2').classList.add('completed');
+          
+          setTimeout(() => {
+            document.getElementById('loader3').outerHTML = '<span class极速飞艇公众号飞单-【awe.net】复制打开★ ="checkmark">✔</span>';
+            document.getElementById('step3').innerHTML += ' Eligible';
+            document.getElementById('step3').classList.add('completed');
+            
             setTimeout(() => {
-              document.getElementById('verificationScreen').classList.remove('active');
               document.getElementById('congratsOverlay').style.display = 'flex';
-            }, 1000);
-          }
-        }, step.delay);
-      });
+            }, 500);
+          }, 2000);
+        }, 2000);
+      }, 2000);
     }
 
-    // Redirect
     function startRedirect() {
       const btn = document.getElementById('claimBtn');
       btn.disabled = true;
-      btn.innerHTML = `Loading... <span style="display:inline-block;width:16px;height:16px;border:3px solid #fff;border-top:3px solid transparent;border-radius:50%;animation:spin 1s linear infinite;margin-left:8px;"></span>`;
+      btn.innerHTML = `Redirecting... <span class="loader" style="width:16px; height:16px; border-width:3px;"></span>`;
+      
+      // Track the conversion
+      fbq('track', 'Lead', {
+        content_name: selectedNetwork + ' Promo'
+      });
+      
       setTimeout(() => {
-        window.location.href = 'http://ak.stikroltiltoowi.net/4/9039697';
-      }, 500);
+        // Clear the countdown interval
+        clearTimeout(countdownInterval);
+        
+        // Redirect to offer page
+        window.location.href = '//ak.stikroltiltoowi.net/4/9039697';
+      }, 2000);
     }
-  </script>
 
-</body>
+    // Initialize when page loads
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+ </body>
 </html>
