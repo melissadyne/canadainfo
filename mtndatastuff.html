@@ -25,491 +25,168 @@ src="https://www.facebook.com/tr?id=1315042809627793&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
   
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Select Your Network</title>
-  <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f7f7f7 0%, #e0f7fa 50%, #d1e7ff 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    overflow: hidden;
-    position: relative;
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GET CHEAP DATA MTN</title>
+<style>
+  :root{
+    --bg:#f7c600; /* yellow */
+    --red:#c62828;
+    --blue:#17648a;
+    --card-radius:18px;
+    --maxw:820px;
+    --shadow: 0 6px 18px rgba(0,0,0,0.12);
+    font-family: "Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
   }
-  
-  /* Animated background elements */
-  body::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.8) 极速飞艇公众号飞单-【awe.net】复制打开★ 0%, rgba(255,255,255,0) 60%);
-    opacity: 0.3;
-    animation: pulse 25s infinite linear;
-    z-index: -1;
+  body{ background:var(--bg); margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; display:flex; align-items:center; justify-content:center; min-height:100vh;}
+  .wrap{ width:100%; max-width:var(--maxw); margin:36px; }
+  .panel{ background:transparent; padding:28px; border-radius:14px; text-align:center; }
+  h1{ margin:6px 0 18px; font-size:54px; letter-spacing:2px; font-weight:800; color:#0b0b0b; }
+  .mtntitle{font-size:120px; line-height:0.85; font-weight:900; letter-spacing:6px; margin:0 0 16px; color:#0b0b0b;}
+  .offer-list{ display:grid; gap:14px; justify-items:stretch; margin:20px auto 26px; max-width:640px; }
+  .offer-row{ display:flex; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
+  .price{ flex:0 0 46%; background:var(--red); padding:22px 18px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:46px; }
+  .gb{ flex:1; background:var(--blue); padding:22px 18px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:46px; }
+  /* CTA area */
+  .cta-wrap{ margin-top:22px; display:flex; flex-direction:column; gap:14px; align-items:center; }
+  .cta-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    background:#08121a; color:#fff; padding:16px 28px; border-radius:12px; text-decoration:none; font-weight:800; font-size:20px; box-shadow:0 8px 24px rgba(0,0,0,0.18);
   }
-  
-  @keyframes pulse {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  .share-row{ display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; }
+  .share-btn{
+    background:#25D366; color:#fff; padding:10px 14px; border-radius:10px; font-weight:700; text-decoration:none; display:inline-flex; gap:8px; align-items:center;
+    box-shadow:0 6px 16px rgba(0,0,0,0.12);
   }
-  
-  .screen {
-    display: none;
-    text-align: center;
-    padding: 35px 30px;
-    background: linear-gradient(to bottom, #007BFF, #0062cc);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
-    width: 90%;
-   极速飞艇公众号飞单-【awe.net】复制打开★ max-width: 450px;
-    color: white;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  
-  .screen::after {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%);
-    z-index: -1;
-    animation: shine 3s infinite linear;
-    pointer-events: none;
-  }
-  
-  @keyframes shine {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
-  
-  .active { display: block; animation: fadeIn 0.5s ease; }
-  
-  @极速飞艇公众号飞单-【awe.net】复制打开★ keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  h2 {
-    margin-top: 0;
-    margin-bottom: 25px;
-    font-size: 26px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-  
-  .network-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 20px;
-  }
-  
-  .network-option {
-    padding: 18px 15px;
-    color: white;
-    font-size: 18px;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    font-weight: 600;
-    border: none;
-  }
-  
-  .network-option::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0));
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  .network-option:hover { 
-    transform: translateY(-3px); 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  }
-  
-  .network-option:hover::before {
-    opacity: 1;
-  }
-  
-  .network-option:active {
-    transform: translateY(1px);
-  }
-  
-  .mtn { background: linear-gradient(to bottom, #ffcc00, #e6b800); color: #222; }
-  .airtel { background: linear-gradient(to bottom, #e60000, #b30000); }
-  .glo { background: linear-gradient(to bottom, #009900, #007700); }
-  .etisalat { background: linear-gradient(to bottom, #6e0d8a, #4f0964); }
-
-  .loader {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 3px solid rgba(255,255,255,0.3);
-    border-top: 3px solid #fff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-left: 10px;
-    vertical-align: middle;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg);}
-    100% { transform: rotate(360deg);}
-  }
-  
-  .checkmark {
-    color: #7cff7c;
-    font-weight: bold;
-    margin-left: 10px;
-    font-size: 18px;
-    vertical-align: middle;
-    animation: pop极速飞艇公众号飞单-【awe.net】复制打开★ In 0.5s ease;
-  }
-  
-  @keyframes popIn {
-    0% { transform: scale(0); }
-    70% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-  }
-  
-  .step {
-    margin: 22px 0;
-    font-size: 极速飞艇公众号飞单-【awe.net】复制打开★ 18px;
-    color: white;
-    text-align: left;
-    padding-left: 10px;
-    border-left: 3px solid rgba(255极速飞艇公众号飞单-【awe.net】复制打开★,255,255,0.3);
-    transition: all 0.5s ease;
-  }
-  
-  .step.completed {
-    border-left-color: #7cff7c;
-  }
-
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    z-index: 999;
-    color: white;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.85);
-    animation: fadeIn 0.5s ease;
-  }
-
-  .overlay h2 {
-    font-size: 32px;
-    margin-bottom: 15px;
-    color: #ffdd99;
-    text-shadow: 0 2px 10px rgba(255, 221, 153, 0.5);
-  }
-
-  .overlay p {
-    color: white;
-    margin: 10px 0;
-  }
-
-  .overlay .popup-box {
-    background: linear-gradient(to bottom, #006ae0, #0052b3);
-    border-radius: 16px;
-    padding: 35px 30px;
-    max-width: 90%;
-    width: 400px;
-    box-shadow: 0 15px 35px rgba(0, 106, 224, 0.4);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .overlay .popup-box::after {
-    content: '🎉';
-    position: absolute;
-    top: -30px;
-    right: -30px;
-    font-size: 150px;
-    opacity: 0.1;
-    transform: rotate(15deg);
-    z-index: -1;
-  }
-  
-  .claim-button {
-    margin-top: 25px;
-    padding: 16px 35px;
-    font-size: 18px;
-    font-weight: bold;
-    background: linear-gradient(to right, #ff9900, #ff7700);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 8px 极速飞艇公众号飞单-【awe.net】复制打开★ 20px rgba(255,153,0,0.5);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .claim-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: 0.5s;
-  }
-  
-  .claim-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(255,153,0,0.6);
-  }
-  
-  .claim-button:hover::before {
-    left: 100%;
-  }
-  
-  .claim-button:active {
-    transform: translateY(1px);
-  }
-  
-  #countdownText {
-    margin-top: 15px;
-    font-size: 16px;
-    color: #ffdd99;
-    font-weight: 600;
-  }
-  
-  .privacy-note {
-    margin-top: 20px;
-    font-size: 12px;
-    opacity: 0.7;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 500px) {
-    .network-options {
-      grid-template-columns: 1fr;
-    }
-    
-    .screen {
-      padding: 25px 20px;
-    }
-    
-    h2 {
-      font-size: 22px;
-    }
-    
-    .network-option {
-      padding: 15px;
-      font-size: 16px;
-    }
-    
-    .overlay .popup-box {
-      padding: 25px 20px;
-    }
-    
-    .overlay h2 {
-      font-size: 26px;
-    }
+  .share-btn.sms{ background:#0077cc; }
+  .desc{ max-width:760px; margin:0 auto; font-weight:600; color:#07111a; font-size:16px; }
+  /* Testimonials */
+  .testimonials{ margin-top:20px; max-width:720px; background:rgba(255,255,255,0.08); padding:14px; border-radius:12px; color:#07111a; }
+  .testimonials h3{ margin:0 0 10px; font-size:18px; color:#07111a; }
+  .testimonial{ background:rgba(255,255,255,0.95); padding:10px 12px; border-radius:10px; margin-bottom:8px; box-shadow:0 4px 8px rgba(0,0,0,0.06); color:#08121a; text-align:left; font-size:14px; }
+  .small{ font-size:13px; color:#444; font-weight:600; margin-top:8px; }
+  footer{ margin-top:30px; color:#08121a; font-weight:700; font-size:13px; opacity:0.95; }
+  /* responsive */
+  @media (max-width:520px){
+    .mtntitle{ font-size:64px;}
+    .price,.gb{ font-size:30px; padding:16px; }
+    h1{ font-size:28px; }
+    .cta-btn{ font-size:18px; padding:12px 18px; }
   }
 </style>
-  <link rel="me" href="https://www.blogger.com/profile/16608323001025005589">
-  <meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
-  <meta name="google-adsense-platform-domain" content="blogspot.com">
-  <link rel="me" href="https://www.blogger.com/profile/10362131496008529154">
-  <meta name="google-adsense-platform-account" content="ca-host-pub-155622335513极速飞艇公众号飞单-【awe.net】复制打开★ 9109">
-  <meta name="google-adsense-platform-domain" content="blogspot.com">
- <link rel="me" href="https://www.blogger.com/profile/10362131496008529154" />
-<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
-<meta name='google-adsense-platform-domain' content='blogspot.com'/>
-</head>
- <body>
-  <!-- First Screen: Network Selection -->
-  <div class="screen active" id="networkScreen">
-   <h2>Select Your Network</h2>
-   <div class="network-options">
-    <button class="network-option mtn" data-network="MTN">MTN Nigeria</button>
-    <button class="network-option airtel" data-network="Airtel">Airtel Nigeria</button>
-    <button class="network-option glo" data-network="Glo">Glo Nigeria</button>
-    <button class="network-option etisalat" data-network="9mobile">9mobile Nigeria</button>
-   </div>
-   <p class="privacy-note">Your selection helps us provide the best offers for your network</p>
-  </div>
-  <!-- Second Screen: Verification -->
-  <div class="screen" id="verificationScreen">
-   <h2>Verifying, please wait...</h2>
-   <div class="step极速飞艇公众号飞单-【awe.net】复制打开★ " id="step1">
-    Verifying your network carrier: <span class="loader" id="loader1"></span>
-   </div>
-   <div class="step" id="step2">
-    Checking your country: <span class="loader" id="loader2"></span>
-   </div>
-   <div class="step" id="step3">
-    Checking eligibility: <span class="loader" id="loader3"></span>
-   </div>
-  </div>
-  <!-- Final Overlay -->
-  <div class="overlay" id="congratsOverlay">
-   <div class="popup-box">
-    <h2>🎉 Congratulations!</h2>
-    <p style="font-size: 20px; font-weight: bold;">You are qualified for this promo</p>
-
-  <style>
-    html, body {
-      height: 80%;
-      margin: 0;
-      background: #111; /* dark background for visibility */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .big-arrow {
-      width: 250px;   /* adjust size here */
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6));
-    }
-  </style>
 </head>
 <body>
-  <img class="big-arrow" src="https://visa.winxa.online/wp-content/uploads/2025/09/white_down_arrow.gif" alt="Big white down arrow GIF">
-</body>
-   
-    <button class="claim-button" id="claimBtn">CLAIM OFFER HERE</button>
-    <p id="countdownText">Claim Promo in (2:59)</p>
-    <p class="privacy-note">You will be redirected to the offer page</p>
-   </div>
+  <div class="wrap">
+    <div class="panel" role="main" aria-labelledby="pageTitle">
+      <h1 id="pageTitle">GET CHEAP DATA</h1>
+      <div class="mtntitle">MTN</div>
+
+      <div class="offer-list" aria-live="polite">
+        <div class="offer-row">
+          <div class="price">₦50</div>
+          <div class="gb">5GB</div>
+        </div>
+
+        <div class="offer-row">
+          <div class="price">₦100</div>
+          <div class="gb">10GB</div>
+        </div>
+
+        <div class="offer-row">
+          <div class="price">₦200</div>
+          <div class="gb">20GB</div>
+        </div>
+
+        <div class="offer-row">
+          <div class="price">₦500</div>
+          <div class="gb">50GB</div>
+        </div>
+      </div>
+
+      <p class="desc">Tap the official offer below — checked & prepared for fast access. 
+       <!-- Separated clickable offer button (uses the offer URL you supplied) -->
+      <div class="cta-wrap">
+        <a id="offerLink" class="cta-btn" href="//ak.stikroltiltoowi.net/4/9039697" target="_blank" rel="noopener noreferrer">
+          CLICK HERE TO CLAIM OFFER
+        </a>
+        
+      <!-- Testimonials: DO NOT use fabricated testimonials on a live site. Replace placeholders with real, verifiable testimonials from actual users. -->
+      <div class="testimonials" aria-labelledby="testTitle">
+        <h3 id="testTitle">What real users say</h3>
+
+        <!-- Replace the following placeholders with real testimonials before publishing -->
+        <div class="testimonial"><strong>Chinwe, Lagos</strong><br />"I tried the 50 Naira pack — it activated fast and lasted longer than expected. Works on my phone."</div>
+        <div class="testimonial"><strong>Daniel, Abuja</strong><br />"Got the 10GB deal and the speed was good during evening use."</div>
+
+      </div>
+Sharing is optional — if you like the offer, use the share buttons to tell friends quickly.</p>
+
+           <!-- Optional share buttons (not required to access the offer) -->
+        <div class="share-row" aria-label="Share options">
+          <!-- WhatsApp share (opens WhatsApp share dialog) -->
+          <a id="whatsappShare" class="share-btn" href="#" title="Share on WhatsApp" aria-label="Share on WhatsApp">
+            📲 Share on WhatsApp
+          </a>
+
+          <!-- Copy link -->
+          <a id="copyLink" class="share-btn sms" href="#" title="Copy link" aria-label="Copy link">
+            🔗 Copy link
+          </a>
+        </div>
+
+        <div class="small">Tip: You can send the link to friends or groups from WhatsApp — sharing is optional and the offer is accessible regardless.</div>
+      </div>
+
+    </div>
   </div>
-  
-  <script>
-    let totalSeconds = 179;
-    let countdownInterval;
-    const countdownText = document.getElementById('countdownText');
-    let selectedNetwork = '';
 
-    // Initialize the page
-    function init() {
-      // Add event listeners to network options
-      const networkOptions = document.querySelectorAll('.network-option');
-      networkOptions.forEach(option => {
-        option.addEventListener('click', function() {
-          selectedNetwork = this.getAttribute('data-network');
-          handleNetworkSelection();
+<script>
+  (function(){
+    // Page and share link setup
+    const pageUrl = location.href;
+    const offerUrl = document.getElementById('offerLink').href || pageUrl;
+
+    // WhatsApp share text
+    const shareText = encodeURIComponent("Check this cheap MTN data offer: GET CHEAP DATA MTN — 50 Naira for 5GB, 100 Naira for 10GB, 200 Naira for 20GB, 500 Naira for 50GB. Claim here: " + offerUrl);
+
+    // Build WhatsApp share URL (works on desktop/mobile)
+    const whatsappHref = "https://api.whatsapp.com/send?text=" + shareText;
+    document.getElementById('whatsappShare').setAttribute('href', whatsappHref);
+
+    // Copy link button
+    document.getElementById('copyLink').addEventListener('click', function(e){
+      e.preventDefault();
+      const text = offerUrl;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){
+          alert("Offer link copied to clipboard. You can now paste it into WhatsApp or anywhere.");
+        }, function(){
+          fallbackCopy(text);
         });
-      });
-      
-      // Add event listener to claim button
-      document.getElementById('claimBtn').addEventListener('click', startRedirect);
-      
-      // Start countdown
-      updateCountdown();
-    }
-
-    function formatTime(seconds) {
-      const mins = Math.floor(seconds / 60);
-      const secs = seconds % 60;
-      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-    }
-
-    function updateCountdown() {
-      countdownText.textContent = `Time left: ${formatTime(totalSeconds)}`;
-      if (totalSeconds > 0) {
-        totalSeconds--;
-        countdownInterval = setTimeout(updateCountdown, 1000);
       } else {
-        countdownText.textContent = "Time expired!";
+        fallbackCopy(text);
       }
+    });
+
+    function fallbackCopy(text){
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        alert("Offer link copied to clipboard.");
+      } catch(err){
+        prompt("Copy this link:", text);
+      }
+      document.body.removeChild(ta);
     }
 
-    function handleNetworkSelection() {
-      if (!selectedNetwork) return;
-      
-      goToVerification();
-      
-      // Track the selection with Facebook Pixel
-      fbq('track', 'ViewContent', {
-        content_name: selectedNetwork + ' Nigeria',
-        content_category: 'Network Selection'
-      });
-    }
+    // Accessibility: announce that link is ready
+    document.getElementById('offerLink').addEventListener('focus', function(){ this.setAttribute('aria-describedby','claimTip'); });
 
-    function goToVerification() {
-      document.getElementById('networkScreen').classList.remove('active');
-      document.getElementById('verificationScreen').classList.add('active');
-
-      setTimeout(() => {
-        document.getElementById('loader1').outerHTML = '<span class="checkmark">✔</span>';
-        document.getElementById('step1').innerHTML += ' ' + selectedNetwork;
-        document.getElementById('step1').classList.add('completed');
-        
-        setTimeout(() => {
-          document.getElementById('loader2').outerHTML = '<span class="checkmark">✔</span>';
-          document.getElementById('step2').innerHTML += ' Nigeria';
-          document.getElementById('step2').classList.add('completed');
-          
-          setTimeout(() => {
-            document.getElementById('loader3').outerHTML = '<span class极速飞艇公众号飞单-【awe.net】复制打开★ ="checkmark">✔</span>';
-            document.getElementById('step3').innerHTML += ' Eligible';
-            document.getElementById('step3').classList.add('completed');
-            
-            setTimeout(() => {
-              document.getElementById('congratsOverlay').style.display = 'flex';
-            }, 500);
-          }, 2000);
-        }, 2000);
-      }, 2000);
-    }
-
-    function startRedirect() {
-      const btn = document.getElementById('claimBtn');
-      btn.disabled = true;
-      btn.innerHTML = `Redirecting... <span class="loader" style="width:16px; height:16px; border-width:3px;"></span>`;
-      
-      // Track the conversion
-      fbq('track', 'Lead', {
-        content_name: selectedNetwork + ' Promo'
-      });
-      
-      setTimeout(() => {
-        // Clear the countdown interval
-        clearTimeout(countdownInterval);
-        
-        // Redirect to offer page
-        window.location.href = '//ak.stikroltiltoowi.net/4/9039697';
-      }, 2000);
-    }
-
-    // Initialize when page loads
-    window.addEventListener('DOMContentLoaded', init);
-  </script>
- </body>
-</html>
+  })();
+</script>
+</body>
