@@ -25,166 +25,621 @@ src="https://www.facebook.com/tr?id=1315042809627793&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
   
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<style>
-  :root{
-    --bg:#f7c600; /* yellow */
-    --red:#c62828;
-    --blue:#17648a;
-    --card-radius:18px;
-    --maxw:820px;
-    --shadow: 0 6px 18px rgba(0,0,0,0.12);
-    font-family: "Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-  }
-  body{ background:var(--bg); margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; display:flex; align-items:center; justify-content:center; min-height:100vh;}
-  .wrap{ width:100%; max-width:var(--maxw); margin:36px; }
-  .panel{ background:transparent; padding:28px; border-radius:14px; text-align:center; }
-  h1{ margin:6px 0 18px; font-size:54px; letter-spacing:2px; font-weight:800; color:#0b0b0b; }
-  .mtntitle{font-size:120px; line-height:0.85; font-weight:900; letter-spacing:6px; margin:0 0 16px; color:#0b0b0b;}
-  .offer-list{ display:grid; gap:14px; justify-items:stretch; margin:20px auto 26px; max-width:640px; }
-  .offer-row{ display:flex; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); }
-  .price{ flex:0 0 46%; background:var(--red); padding:22px 18px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:46px; }
-  .gb{ flex:1; background:var(--blue); padding:22px 18px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:46px; }
-  /* CTA area */
-  .cta-wrap{ margin-top:22px; display:flex; flex-direction:column; gap:14px; align-items:center; }
-  .cta-btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    background:#08121a; color:#fff; padding:16px 28px; border-radius:12px; text-decoration:none; font-weight:800; font-size:20px; box-shadow:0 8px 24px rgba(0,0,0,0.18);
-  }
-  .share-row{ display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; }
-  .share-btn{
-    background:#25D366; color:#fff; padding:10px 14px; border-radius:10px; font-weight:700; text-decoration:none; display:inline-flex; gap:8px; align-items:center;
-    box-shadow:0 6px 16px rgba(0,0,0,0.12);
-  }
-  .share-btn.sms{ background:#0077cc; }
-  .desc{ max-width:760px; margin:0 auto; font-weight:600; color:#07111a; font-size:16px; }
-  /* Testimonials */
-  .testimonials{ margin-top:20px; max-width:720px; background:rgba(255,255,255,0.08); padding:14px; border-radius:12px; color:#07111a; }
-  .testimonials h3{ margin:0 0 10px; font-size:18px; color:#07111a; }
-  .testimonial{ background:rgba(255,255,255,0.95); padding:10px 12px; border-radius:10px; margin-bottom:8px; box-shadow:0 4px 8px rgba(0,0,0,0.06); color:#08121a; text-align:left; font-size:14px; }
-  .small{ font-size:13px; color:#444; font-weight:600; margin-top:8px; }
-  footer{ margin-top:30px; color:#08121a; font-weight:700; font-size:13px; opacity:0.95; }
-  /* responsive */
-  @media (max-width:520px){
-    .mtntitle{ font-size:64px;}
-    .price,.gb{ font-size:30px; padding:16px; }
-    h1{ font-size:28px; }
-    .cta-btn{ font-size:18px; padding:12px 18px; }
-  }
-</style>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTN Data Bounties - Claim Your Free Data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* --- MTN Brand Colors --- */
+        :root {
+            --mtn-yellow: #ffcb00;
+            --mtn-yellow-dark: #e6b800;
+            --mtn-blue: #004987;
+            --text-dark: #222;
+            --success-green: #28a745;
+            --error-red: #dc3545;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #FFF9E8 0%, #fef5e7 100%);
+            margin: 0;
+            padding: 15px;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid var(--mtn-yellow);
+            position: relative;
+            z-index: 1;
+            margin: 10px 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo-container {
+            margin-bottom: 12px;
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #000;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--mtn-yellow) 0%, var(--mtn-yellow-dark) 100%);
+            color: #000;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 16px;
+            margin: 10px 0;
+            font-size: 14px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefits-container {
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 15px 0;
+            gap: 8px;
+        }
+
+        .benefit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .benefit i {
+            color: var(--mtn-yellow);
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .benefit-text {
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        .countdown {
+            text-align: center;
+            margin: 12px 0;
+            font-size: 13px;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+        input {
+            background-color: #fdfdfd;
+            padding-right: 40px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--mtn-yellow);
+            box-shadow: 0 0 0 3px rgba(255, 203, 0, 0.35);
+            background-color: #fff;
+        }
+
+        .form-group.valid input {
+            border-color: var(--success-green);
+        }
+
+        .form-group.error input,
+        .form-group.error .select-box {
+            border-color: var(--error-red);
+        }
+        
+        .form-group.error .select-box {
+            border: 1px solid var(--error-red);
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .select-box {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            border: none;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        .select-box .option {
+            flex: 1;
+            text-align: center;
+            padding: 12px 5px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--medium-gray);
+            font-size: 15px;
+            font-weight: 500;
+            background: var(--light-gray);
+        }
+
+        .select-box .option:hover {
+            border-color: var(--mtn-yellow);
+            background: rgba(255, 203, 0, 0.1);
+        }
+
+        .select-box .option.selected {
+            background-color: var(--mtn-yellow);
+            color: var(--text-dark);
+            font-weight: bold;
+            border-color: var(--mtn-yellow);
+            transform: scale(1.03);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--mtn-yellow) 0%, var(--mtn-yellow-dark) 100%);
+            color: var(--text-dark);
+            border: none; 
+            cursor: pointer;
+            font-weight: 700; 
+            margin-top: 20px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+            height: 55px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .disclaimer {
+            font-size: 11px;
+            text-align: center;
+            color: #777;
+            margin-top: 15px;
+            padding: 0 8px;
+            line-height: 1.4;
+        }
+        
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .badge {
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #666;
+        }
+        
+        .badge i {
+            color: var(--mtn-blue);
+        }
+        
+        .loader {
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.95); 
+            z-index: 9999; 
+            justify-content: center;
+            align-items: center; 
+            flex-direction: column; 
+            backdrop-filter: blur(4px);
+        }
+        
+        .loader-content {
+            text-align: center;
+        }
+        
+        .loader-content p { 
+            color: #333; 
+            font-size: 18px; 
+            font-weight: 500; 
+            margin: 0; 
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--mtn-yellow);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .social-proof {
+            position: fixed; 
+            bottom: 15px; 
+            left: 15px; 
+            background-color: #fff; 
+            padding: 12px 15px;
+            border-radius: 8px; 
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12); 
+            font-size: 13px;
+            color: #333; 
+            z-index: 1000; 
+            max-width: 300px; 
+            pointer-events: none;
+            opacity: 0; 
+            transform: translateY(20px); 
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .social-proof.show { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        
+        .social-proof i {
+            color: var(--success-green);
+            font-size: 18px;
+        }
+        
+        .cta-highlight {
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 520px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .subtitle {
+                font-size: 15px;
+            }
+            
+            .benefits-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .benefit {
+                flex-direction: row;
+                justify-content: flex-start;
+                text-align: left;
+                gap: 8px;
+            }
+            
+            .benefit i {
+                margin-bottom: 0;
+                font-size: 16px;
+            }
+            
+            .social-proof {
+                left: 10px;
+                right: 10px;
+                max-width: none;
+                bottom: 10px;
+            }
+        }
+    </style>
+<link rel="me" href="https://www.blogger.com/profile/17781138282047660052" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
 </head>
 <body>
-  <div class="wrap">
-    <div class="panel" role="main" aria-labelledby="pageTitle">
-      <div class="mtntitle">MTN DATA</div>
-
-      <div class="offer-list" aria-live="polite">
-        <div class="offer-row">
-          <div class="price">₦50</div>
-          <div class="gb">5GB</div>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <img src="https://rolamek.com/wp-content/uploads/2025/10/mtn-logo-png.png" alt="MTN Logo" class="logo">
+            </div>
+            <h1>MTN Data Bounties</h1>
+            <p class="subtitle">Claim your exclusive data rewards</p>
+            <div class="offer-badge">
+                <i class="fas fa-gift"></i> LIMITED TIME OFFER
+            </div>
         </div>
-
-        <div class="offer-row">
-          <div class="price">₦100</div>
-          <div class="gb">10GB</div>
-        </div>
-
-        <div class="offer-row">
-          <div class="price">₦200</div>
-          <div class="gb">20GB</div>
-        </div>
-
-        <div class="offer-row">
-          <div class="price">₦500</div>
-          <div class="gb">50GB</div>
-        </div>
-      </div>
-
-      <p class="desc">Tap the official offer below — checked & prepared for fast access. 
-       <!-- Separated clickable offer button (uses the offer URL you supplied) -->
-      <div class="cta-wrap">
-        <a id="offerLink" class="cta-btn" href="https://www.effectivegatecpm.com/ysz18a680?key=1a72001338688b7d409faa8a8eaeba11" target="_blank" rel="noopener noreferrer">
-          CLICK TO CLAIM OFFER ✅️
-        </a>
         
-      <!-- Testimonials: DO NOT use fabricated testimonials on a live site. Replace placeholders with real, verifiable testimonials from actual users. -->
-      <div class="testimonials" aria-labelledby="testTitle">
-        <h3 id="testTitle">What real users say</h3>
-
-        <!-- Replace the following placeholders with real testimonials before publishing -->
-        <div class="testimonial"><strong>Chinwe, Lagos</strong><br />"I tried the 50 Naira pack — it activated fast and lasted longer than expected. Works on my phone."</div>
-        <div class="testimonial"><strong>Daniel, Abuja</strong><br />"Got the 10GB deal and the speed was good during evening use."</div>
-
-      </div>
-Sharing is optional — if you like the offer, use the share buttons to tell friends quickly.</p>
-
-           <!-- Optional share buttons (not required to access the offer) -->
-        <div class="share-row" aria-label="Share options">
-          <!-- WhatsApp share (opens WhatsApp share dialog) -->
-          <a id="whatsappShare" class="share-btn" href="#" title="Share on WhatsApp" aria-label="Share on WhatsApp">
-            📲 Share on WhatsApp
-          </a>
-
-          <!-- Copy link -->
-          <a id="copyLink" class="share-btn sms" href="#" title="Copy link" aria-label="Copy link">
-            🔗 Copy link
-          </a>
+        <div class="benefits-container">
+            <div class="benefit">
+                <i class="fas fa-check-circle"></i>
+                <span class="benefit-text">Instant data allocation</span>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-bolt"></i>
+                <span class="benefit-text">No credit card required</span>
+            </div>
+            <div class="benefit">
+                <i class="fas fa-shield-alt"></i>
+                <span class="benefit-text">Secure & verified</span>
+            </div>
         </div>
-
-        <div class="small">Tip: You can send the link to friends or groups from WhatsApp — sharing is optional and the offer is accessible regardless.</div>
-      </div>
-
+        
+        <div class="countdown">
+            <i class="fas fa-clock"></i> Offer expires in: <span id="countdown-timer">05:00</span>
+        </div>
+        
+        <div id="form-container">
+            <form id="grantForm" novalidate>
+                <div class="form-group" id="amountGroup">
+                    <label>Select Your Data Package</label>
+                    <div class="select-box" id="amount">
+                        <div class="option" data-value="10000">5GB</div>
+                        <div class="option" data-value="20000">10GB</div>
+                        <div class="option" data-value="40000">20GB</div>
+                      <div class="option" data-value="100000">50GB</div>
+                    </div>
+                    <input type="hidden" id="selectedAmount" name="selectedAmount" required>
+                    <div class="error-message">Please select a data package</div>
+                </div>
+                <div class="cta-highlight">
+                    <button type="submit">
+                        <i class="fas fa-arrow-right"></i> CONTINUE NOW
+                    </button>
+                </div>
+            </form>
+            
+            <div class="security-badges">
+                <div class="badge">
+                    <i class="fas fa-lock"></i> Secure
+                </div>
+                <div class="badge">
+                    <i class="fas fa-user-shield"></i> Verified
+                </div>
+                <div class="badge">
+                    <i class="fas fa-shield-alt"></i> Encrypted
+                </div>
+            </div>
+            
+            <p class="disclaimer">
+                The eligibility button above takes you to a second page that gives you access to <b>Subscribe</b> and confirm your phone number to qualify for up to 100GB free data or airtime.
+                <br><br>
+                <b>Disclaimer:</b> Offer exclusively available after following the steps on the next page. This promotion is available for MTN subscribers only and is subject to terms and conditions.
+            </p>
+        </div>
     </div>
-  </div>
 
-<script>
-  (function(){
-    // Page and share link setup
-    const pageUrl = location.href;
-    const offerUrl = document.getElementById('offerLink').href || pageUrl;
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>Checking Eligibility...</p>
+            <p>Please wait while we verify your account</p>
+        </div>
+    </div>
 
-    // WhatsApp share text
-    const shareText = encodeURIComponent("Check this cheap MTN data offer: GET CHEAP DATA MTN — 50 Naira for 5GB, 100 Naira for 10GB, 200 Naira for 20GB, 500 Naira for 50GB. Claim here: " + offerUrl);
+    <div class="social-proof" id="socialProof"></div>
 
-    // Build WhatsApp share URL (works on desktop/mobile)
-    const whatsappHref = "https://api.whatsapp.com/send?text=" + shareText;
-    document.getElementById('whatsappShare').setAttribute('href', whatsappHref);
+    <script>
+        const form = document.getElementById('grantForm');
+        const loader = document.getElementById('loader');
+        const container = document.querySelector('.container');
+        const amountBox = document.getElementById('amount');
+        const selectedAmountInput = document.getElementById('selectedAmount');
+        const formGroups = document.querySelectorAll('.form-group');
+        const socialProof = document.getElementById('socialProof');
+        const countdownTimer = document.getElementById('countdown-timer');
 
-    // Copy link button
-    document.getElementById('copyLink').addEventListener('click', function(e){
-      e.preventDefault();
-      const text = offerUrl;
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(function(){
-          alert("Offer link copied to clipboard. You can now paste it into WhatsApp or anywhere.");
-        }, function(){
-          fallbackCopy(text);
+        // Initialize option selection
+        amountBox.addEventListener('click', function(e) {
+            if (e.target.classList.contains('option')) {
+                amountBox.querySelectorAll('.option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                e.target.classList.add('selected');
+                selectedAmountInput.value = e.target.getAttribute('data-value');
+                
+                const group = e.target.closest('.form-group');
+                setFieldState(group, 'valid');
+                
+                // Show confetti effect for selection
+                confetti({
+                    particleCount: 20,
+                    spread: 30,
+                    origin: { y: 0.6 },
+                    colors: ['#ffcb00', '#004987']
+                });
+            }
         });
-      } else {
-        fallbackCopy(text);
-      }
-    });
 
-    function fallbackCopy(text){
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      try {
-        document.execCommand('copy');
-        alert("Offer link copied to clipboard.");
-      } catch(err){
-        prompt("Copy this link:", text);
-      }
-      document.body.removeChild(ta);
-    }
+        function setFieldState(group, state) {
+            group.classList.remove('valid', 'error');
+            if (state) { group.classList.add(state); }
+        }
 
-    // Accessibility: announce that link is ready
-    document.getElementById('offerLink').addEventListener('focus', function(){ this.setAttribute('aria-describedby','claimTip'); });
+        // Countdown timer
+        function startCountdown(duration) {
+            let timer = duration, minutes, seconds;
+            const countdownInterval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
 
-  })();
-</script>
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                countdownTimer.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(countdownInterval);
+                    document.querySelector('.countdown').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Offer has expired';
+                }
+            }, 1000);
+        }
+
+        startCountdown(300); // 5 minutes countdown
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isFormValid = true;
+            let firstInvalidField = null;
+
+            formGroups.forEach(group => {
+                const input = group.querySelector('input');
+                if (input) {
+                    let isValid = input.value.trim() !== '';
+                    if (input.id === 'selectedAmount' && !selectedAmountInput.value) {
+                        isValid = false;
+                    }
+                    if (!isValid) {
+                        setFieldState(group, 'error');
+                        isFormValid = false;
+                        if (!firstInvalidField) { firstInvalidField = group; }
+                    } else {
+                        setFieldState(group, 'valid');
+                    }
+                }
+            });
+
+            if (!isFormValid) {
+                if(firstInvalidField) {
+                    firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            container.style.opacity = '0.5';
+            loader.style.display = 'flex';
+
+            setTimeout(() => {
+                const urls = [
+                    'https://www.effectivegatecpm.com/ysz18a680?key=1a72001338688b7d409faa8a8eaeba11',
+                    'https://www.effectivegatecpm.com/ysz18a680?key=1a72001338688b7d409faa8a8eaeba11'
+                ];
+
+                const randomIndex = Math.floor(Math.random() * urls.length);
+                const randomUrl = urls[randomIndex];
+                
+                window.location.href = randomUrl;
+                
+            }, 1500); // 1.5-second delay
+        });
+
+        /* --- Social Proof JavaScript Logic --- */
+        const names = ["0812*****06", "0907*****19", "0912*****82", "0810*****74", "0807*****32", "0706*****7", "0812*****09", "0701*****62", "0901*****89", "0810*****76"];
+        const states = ["Lagos", "Abuja", "Port Harcourt", "Ibadan", "Kano", "Benin", "Enugu", "Kaduna", "Abeokuta", "Warri"];
+        
+        function showSocialProof() {
+            const name = names[Math.floor(Math.random() * names.length)];
+            const state = states[Math.floor(Math.random() * states.length)];
+            const dataAmounts = ["5GB", "10GB", "15GB", "20GB", "25GB"];
+            const dataAmount = dataAmounts[Math.floor(Math.random() * dataAmounts.length)];
+            
+            socialProof.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <strong>${name} - ${state}</strong> just received ${dataAmount} free data
+                    <div style="font-size: 11px; color: #777;">Just now</div>
+                </div>
+            `;
+            socialProof.classList.add('show');
+            setTimeout(() => { socialProof.classList.remove('show'); }, 5000);
+        }
+
+        // Show first notification after 2 seconds
+        setTimeout(showSocialProof, 2000); 
+        // Continue s  ur howing notifications every 8-12 seconds
+        setInterval(showSocialProof, 8000 + Math.random() * 4000); 
+    </script>
 </body>
+</html>
