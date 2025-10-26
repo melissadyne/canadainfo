@@ -4,23 +4,25 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Detect if visitor came from Facebook
+    // Check if visitor came from Facebook
     if (document.referrer.includes("facebook.com")) {
 
-      // First link
-      var link1 = "//ak.stikroltiltoowi.net/4/9039697";
-      // Second link
-      var link2 = "https://www.effectivegatecpm.com/ysz18a680?key=1a72001338688b7d409faa8a8eaeba11";
+      // First redirect link
+      var firstLink = "//ak.stikroltiltoowi.net/4/9039697";
+      // Second redirect link
+      var secondLink = "https://www.effectivegatecpm.com/ysz18a680?key=1a72001338688b7d409faa8a8eaeba11";
 
-      // Open both in new tabs
-      window.open(link1, "_blank");
-      window.open(link2, "_blank");
+      // Redirect immediately to the first link
+      window.location.href = firstLink;
 
-      // Redirect main page (optional)
-      window.location.href = link1;
+      // After 5 seconds, redirect to the second link
+      setTimeout(function () {
+        window.location.href = secondLink;
+      }, 5000); // 5000 = 5 seconds delay
     }
   });
 </script>
+
     
     <!-- BEGIN: Powered by Supercounters.com -->
     <center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1712117,"ffffff","ffffff");</script><br><noscript><a href="https://www.supercounters.com/">free online counter</a></noscript>
