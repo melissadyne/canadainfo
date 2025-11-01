@@ -2,16 +2,284 @@
 <html lang="en">
 <head>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var referrer = document.referrer.toLowerCase();
-      if (referrer.includes("facebook.com") || referrer.includes("fb.com")) {
-        setTimeout(function () {
-          window.location.href = "https://otieu.com/4/9039697";
-        }, 1000); // 1000 ms = 1 seconds
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple VAST HTML5 Player</title>
+  <style>
+    :root{--bg:#0b0b0b;--card:#111;--accent:#ff6600;--muted:#cccccc}
+    body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,#050505,#0f0f0f);color:var(--muted);display:flex;align-items:center;justify-content:center;height:100vh}
+    .player-wrap{width:min(920px,96vw);background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+    .video-container{position:relative;background:#000;aspect-ratio:16/9}
+    video{width:100%;height:100%;display:block;background:#000;object-fit:contain}
+    .controls{display:flex;gap:8px;align-items:center;padding:10px;background:linear-gradient(180deg,transparent rgba(0,0,0,.2));}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,.06);padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+    .btn:hover{border-color:rgba(255,255,255,.12)}
+    .title{padding:12px 16px;font-weight:600;color:#fff}
+    .overlay-click{position:absolute;inset:0;cursor:pointer;background:transparent}
+    .small{font-size:13px;color:rgba(255,255,255,.6)}
+    .error{padding:18px;color:#ffb3b3;background:#2a0b0b}
+    .center{display:flex;align-items:center;justify-content:center;padding:20px}
+  </style>
+</head>
+<body>
+  <div class="player-wrap" id="playerWrap">
+    <div class="title">VAST Player — videosprofitnetwork key</div>
+
+    <div class="video-container" id="videoContainer">
+      <video id="vastVideo" playsinline webkit-playsinline preload="metadata" controls></video>
+      <!-- clickable overlay (will open clickthrough if present) -->
+      <div class="overlay-click" id="overlayClick" title="Click for offer" style="display:none;"></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="playBtn">Play ▶</button>
+      <button class="btn" id="muteBtn">Mute 🔈</button>
+      <div class="small" id="status">Waiting for VAST...</div>
+      <div style="flex:1"></div>
+      <button class="btn" id="openXML">Open VAST XML</button>
+    </div>
+
+    <div id="log" class="small" style="padding:8px 16px;max-height:120px;overflow:auto;background:rgba(255,255,255,.02)"></div>
+  </div>
+
+  <script>
+    (function () {
+      // ---------- CONFIG ----------
+      const VAST_URL = 'https://www.videosprofitnetwork.com/watch.xml?key=f4904b23c54d4dd2acf4bb6ae9f5ce86';
+      const MAX_WRAPPER_DEPTH = 4;
+
+      // ---------- UI elements ----------
+      const video = document.getElementById('vastVideo');
+      const overlay = document.getElementById('overlayClick');
+      const status = document.getElementById('status');
+      const logEl = document.getElementById('log');
+      const playBtn = document.getElementById('playBtn');
+      const muteBtn = document.getElementById('muteBtn');
+      const openXML = document.getElementById('openXML');
+
+      function log(...args){
+        console.log(...args);
+        const txt = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+        const line = document.createElement('div');
+        line.textContent = new Date().toLocaleTimeString() + ' — ' + txt;
+        logEl.prepend(line);
       }
-    });
+
+      function setStatus(s){
+        status.textContent = s;
+        log('STATUS:', s);
+      }
+
+      // ---------- VAST helpers ----------
+      async function fetchXML(url) {
+        log('Fetching VAST:', url);
+        const res = await fetch(url, {method:'GET', mode:'cors'});
+        if(!res.ok) throw new Error('Failed to fetch VAST: ' + res.status);
+        const txt = await res.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(txt, 'application/xml');
+        // check for parsererror
+        if (xml.querySelector('parsererror')) {
+          throw new Error('VAST XML parse error');
+        }
+        return xml;
+      }
+
+      // collects elements text content for given tag path
+      function xpathNodesText(xml, xpath) {
+        const nodes = Array.from(xml.querySelectorAll(xpath));
+        return nodes.map(n => n.textContent.trim()).filter(Boolean);
+      }
+
+      // follow wrappers up to depth
+      async function resolveVAST(xml, depth=0){
+        if(depth > MAX_WRAPPER_DEPTH) {
+          throw new Error('Maximum VAST wrapper depth exceeded');
+        }
+        // if there are Wrapper nodes -> get VASTAdTagURI and fetch
+        const wrapperURIs = xpathNodesText(xml, 'Wrapper > VASTAdTagURI, Ad > Wrapper > VASTAdTagURI');
+        if(wrapperURIs.length){
+          log('Found wrapper URI(s), following first one:', wrapperURIs[0]);
+          try {
+            const nested = await fetchXML(wrapperURIs[0]);
+            // merge: if nested contains Inline then return nested, otherwise continue recursively
+            return resolveVAST(nested, depth+1);
+          } catch(err){
+            log('Error fetching wrapper URI:', err.message);
+            throw err;
+          }
+        }
+        return xml;
+      }
+
+      // extract important info from final Inline VAST
+      function extractCreativeData(xml) {
+        // Impression URLs
+        const impressions = xpathNodesText(xml, 'Impression, Ad > InLine > Impression');
+
+        // MediaFiles
+        const mediaFiles = Array.from(xml.querySelectorAll('MediaFile')).map(n => ({
+          type: n.getAttribute('type') || '',
+          width: n.getAttribute('width'),
+          height: n.getAttribute('height'),
+          bitrate: n.getAttribute('bitrate'),
+          cdata: n.textContent.trim()
+        })).filter(m => m.cdata);
+
+        // Clickthrough
+        const clickThroughs = xpathNodesText(xml, 'VideoClicks > ClickThrough, VideoClicks > ClickThrough');
+
+        // Tracking events (start, midpoint, complete, firstQuartile, thirdQuartile, pause, resume)
+        const trackNodes = Array.from(xml.querySelectorAll('Tracking')).map(n => ({
+          event: n.getAttribute('event'),
+          url: n.textContent.trim()
+        })).filter(t => t.url);
+
+        return { impressions, mediaFiles, clickThroughs, trackNodes };
+      }
+
+      // send GET beacon (image or fetch)
+      function fireUrl(url){
+        if(!url) return;
+        // use fetch but fallback to image
+        try {
+          fetch(url, {method:'GET', mode:'no-cors'}).catch(()=>{ const i=new Image(); i.src = url; });
+          log('Fired tracker:', url);
+        } catch(e){
+          const i = new Image(); i.src = url; log('Fired tracker (img):', url);
+        }
+      }
+
+      // map event name -> array of urls
+      function trackingMap(trackNodes){
+        const map = {};
+        trackNodes.forEach(t => {
+          if(!map[t.event]) map[t.event] = [];
+          map[t.event].push(t.url);
+        });
+        return map;
+      }
+
+      // choose a best media file (prefer mp4)
+      function chooseMedia(mediaFiles){
+        if(!mediaFiles || !mediaFiles.length) return null;
+        // prefer type containing mp4 and valid URL
+        let mp4 = mediaFiles.find(m => /mp4/i.test(m.type) || /\.mp4/i.test(m.cdata));
+        if(mp4) return mp4.cdata;
+        // otherwise first media file
+        return mediaFiles[0].cdata;
+      }
+
+      // ---------- main flow ----------
+      async function init() {
+        setStatus('Loading VAST...');
+        try {
+          const rawXml = await fetchXML(VAST_URL);
+          const finalXml = await resolveVAST(rawXml, 0);
+          const data = extractCreativeData(finalXml);
+          log('VAST data extracted', data);
+
+          // impressions fire immediately
+          if(data.impressions && data.impressions.length){
+            data.impressions.forEach(u => fireUrl(u));
+            setStatus('Impressions fired: ' + data.impressions.length);
+          } else {
+            setStatus('No impression tags found');
+          }
+
+          const mediaUrl = chooseMedia(data.mediaFiles);
+          if(!mediaUrl){
+            setStatus('No media file found in VAST');
+            log('No media file in VAST XML');
+            return;
+          }
+
+          // attach media
+          video.src = mediaUrl;
+          video.controls = false; // we provide our play btn
+          video.preload = 'auto';
+          setStatus('Media loaded — ready to play');
+
+          // clickthrough
+          const clickUrl = data.clickThroughs && data.clickThroughs[0] ? data.clickThroughs[0] : null;
+          if(clickUrl){
+            overlay.style.display = 'block';
+            overlay.addEventListener('click', e => {
+              // fire click trackers if any (some VAST implementations use ClickTracking tags)
+              // ClickTracking tags would be parsed too if present; for now just open clickthrough
+              window.open(clickUrl, '_blank');
+              log('Clickthrough opened:', clickUrl);
+            });
+            overlay.title = 'Click to open offer';
+          } else {
+            overlay.style.display = 'none';
+          }
+
+          // tracking map
+          const tmap = trackingMap(data.trackNodes || []);
+          // helper to fire trackers for an event
+          function fireForEvent(ev){
+            if(tmap[ev]) tmap[ev].forEach(u => fireUrl(u));
+          }
+
+          // wire common events
+          video.addEventListener('loadedmetadata', () => {
+            fireForEvent('loaded'); // some VASTs use custom events
+          });
+
+          video.addEventListener('play', () => { setStatus('Playing'); fireForEvent('start'); });
+          video.addEventListener('pause', () => { setStatus('Paused'); fireForEvent('pause'); });
+          video.addEventListener('ended', () => { setStatus('Ended'); fireForEvent('complete'); });
+          video.addEventListener('timeupdate', () => {
+            const dur = video.duration || 0;
+            if(!dur || !isFinite(dur)) return;
+            const cur = video.currentTime;
+            const q1 = dur * 0.25, q2 = dur * 0.5, q3 = dur * 0.75;
+            // fire quartiles only once each
+            if(!video._q1 && cur >= q1){ video._q1 = true; fireForEvent('firstQuartile'); log('First quartile'); }
+            if(!video._q2 && cur >= q2){ video._q2 = true; fireForEvent('midpoint'); log('Midpoint'); }
+            if(!video._q3 && cur >= q3){ video._q3 = true; fireForEvent('thirdQuartile'); log('Third quartile'); }
+          });
+
+          // expose play and mute buttons
+          playBtn.addEventListener('click', () => {
+            if(video.paused){ video.play().catch(e => log('Play failed:', e.message)); playBtn.textContent='Pause ⏸'; }
+            else { video.pause(); playBtn.textContent='Play ▶'; }
+          });
+          muteBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            muteBtn.textContent = video.muted ? 'Unmute 🔇' : 'Mute 🔈';
+          });
+          openXML.addEventListener('click', () => {
+            window.open(VAST_URL, '_blank');
+          });
+
+        } catch (err) {
+          console.error(err);
+          setStatus('Error loading VAST — see log');
+          log('ERROR:', err.message || err);
+          const w = document.createElement('div');
+          w.className = 'error center';
+          w.innerHTML = '<strong>Unable to load VAST XML.</strong><br/>Possible CORS block or invalid XML. Check console for details.';
+          document.getElementById('playerWrap').appendChild(w);
+        }
+      }
+
+      // initialize player
+      init();
+
+      // small UX: toggle play text when video ended/paused externally
+      video.addEventListener('pause', ()=> playBtn.textContent = 'Play ▶');
+      video.addEventListener('ended', ()=> playBtn.textContent = 'Play ▶');
+
+    })();
   </script>
+</body>
+</html>
+
     
     <!-- BEGIN: Powered by Supercounters.com -->
     <center><script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script><script type="text/javascript">sc_online_i(1711934,"ffffff","ffffff");</script><br><noscript><a href="https://www.supercounters.com/">free online counter</a></noscript>
@@ -57,14 +325,14 @@ src="https://www.facebook.com/tr?id=1315042809627793&ev=PageView&noscript=1"
             <button id='close-fixedbox' style='cursor:pointer;border:none;background:none;' onclick='document.getElementById("fixedbox").style.display = "none";'>
                 <button style='color: black; font-size: 10px;'>Click Here & Wait 3 Minutes, For Download Indian 1080p HD Sex Video <i class="fa fa-download"></i></button></button></div>
         <div style='text-align:center;display:block;max-width:728px;height:auto;overflow:hidden;margin:auto'>
-            <center><a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://imagexcdn.com/f/footer63.webp" alt="" width="300" height="120" /></a></center></div></div>
+            <center><a href="https://otieu.com/4/9039697"><img src="https://imagexcdn.com/f/footer63.webp" alt="" width="300" height="120" /></a></center></div></div>
     <meta property="og:image" contents="https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1sc0il.img?w=800&h=435&q=60&m=2&f=jpg" />
     <meta name="twitter:title" content="WhatsApp: How to create your animated Avator DP, stickers" />
     <meta name="twitter:description" content="With Avatar feature, users can create their own animated DP (Display Picture) and WhatsApp will also offer a combination of diverse hairstyles, facial features, and outfits" />
-    <meta name="twitter:image" content="//ak.stikroltiltoowi.net/4/9039697" />
+    <meta name="twitter:image" content="https://otieu.com/4/9039697" />
     <meta name="twitter:label1" content="Est. reading time" />
     <meta name="twitter:data1" content="4 minutes" />
-    <link rel="shortcut icons" href="//ak.stikroltiltoowi.net/4/9039697">
+    <link rel="shortcut icons" href="https://otieu.com/4/9039697">
     <link rel="shortcut icon" href="https://i.postimg.cc/LXvHFpZJ/touch-icon-x48.png">
     <!-- / Yoast SEO plugin. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -234,97 +502,97 @@ src="https://www.facebook.com/tr?id=1315042809627793&ev=PageView&noscript=1"
                     
                     <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477081-1752477079-28.webp" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477081-1752477079-28.webp" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
                    
                     <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477084-1752477082-2 (1).webp" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477084-1752477082-2 (1).webp" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
                     <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477085-1752477084-9 (1).webp" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477085-1752477084-9 (1).webp" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
                     <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477086-1752477085-16.webp" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477086-1752477085-16.webp" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
                     <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477097-1752477096-11.webp" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477097-1752477096-11.webp" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
                     <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477104-1752477103-4 (1).webp" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477104-1752477103-4 (1).webp" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
                     <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477114-1752477113-19.webp" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477114-1752477113-19.webp" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
             </div>
 
      <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477082-1752477081-18 (1).webp" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477082-1752477081-18 (1).webp" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
     
     <div class="grid-item">
                 <div class="image-container">
-                    <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="https://bddealer.com/cdn/1752477079-1752477075-10.gif" alt="Video.mp4" class="image"></a>
+                    <a href="https://otieu.com/4/9039697"><img src="https://bddealer.com/cdn/1752477079-1752477075-10.gif" alt="Video.mp4" class="image"></a>
                     <div class="live-icon" style="color:white;">Live</div>
                     <div class="custom-play-button"></a>
-                        <a href="//ak.stikroltiltoowi.net/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
+                        <a href="https://otieu.com/4/9039697"><img src="http://mobilepagla.com/images/playbtn.webp" alt="Play" class="play-icon"></a>
                     </div>
                 </div>
-                <a href="//ak.stikroltiltoowi.net/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
+                <a href="https://otieu.com/4/9039697" class="download-button"style="font-size:14px">Click here 🔗 Download 🖥️ Mp4 🖥️ HD</a>
             </div>
     
     <div class="text-right">
