@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BlueConnect — Sign In</title>
+
+  <!-- Google font (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f0f2f7;
+      --primary:#1877f2; /* social-blue look, but not FB branding */
+      --card:#ffffff;
+      --muted:#6b7280;
+      --radius:12px;
+      --max-width:980px;
+      --gap:28px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,#eef3fb 0%,var(--bg) 100%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      background:transparent;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:var(--gap);
+      align-items:stretch;
+    }
+
+    /* left promotional panel */
+    .promo{
+      background: linear-gradient(135deg, rgba(24,119,242,0.95), rgba(23,103,210,0.95));
+      color:white;
+      border-radius:var(--radius);
+      padding:40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      box-shadow:0 10px 30px rgba(20,40,80,0.12);
+      min-height:360px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:0.6px;
+      box-shadow: inset 0 -6px 12px rgba(0,0,0,0.06);
+    }
+    .brand h1{
+      margin:0;
+      font-size:20px;
+      line-height:1;
+    }
+    .promo h2{
+      margin:8px 0 12px 0;
+      font-size:32px;
+      line-height:1.05;
+      font-weight:700;
+    }
+    .promo p{ margin:0; color:rgba(255,255,255,0.92); font-size:15px; max-width:40ch; }
+
+    /* right card (login) */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:0 10px 30px rgba(15,23,42,0.06);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      min-height:360px;
+    }
+    .card h3{ margin:0 0 6px 0; font-size:20px; }
+    .card p{ margin:0 0 18px 0; color:var(--muted); font-size:14px; }
+
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    label{ font-size:13px; color:#111827; font-weight:600; display:block; margin-bottom:6px; }
+    .input{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid #e6e9ee;
+      font-size:14px;
+      outline:none;
+      transition:box-shadow .15s, border-color .12s;
+    }
+    .input:focus{
+      border-color: rgba(24,119,242,0.8);
+      box-shadow:0 6px 18px rgba(24,119,242,0.08);
+    }
+
+    .row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      font-size:14px;
+    }
+    .remember{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color:var(--muted);
+    }
+    .btn{
+      background:var(--primary);
+      color:white;
+      border:none;
+      padding:12px 14px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:15px;
+      cursor:pointer;
+      width:100%;
+      box-shadow:0 8px 20px rgba(24,119,242,0.18);
+      transition:transform .08s ease, box-shadow .12s;
+    }
+    .btn:active{ transform:translateY(1px) }
+    .link{
+      background:transparent;
+      color:var(--primary);
+      border:none;
+      font-weight:600;
+      cursor:pointer;
+      padding:8px;
+      font-size:14px;
+    }
+
+    .divider{
+      height:1px;
+      background:#f2f4f7;
+      margin:12px 0;
+      border-radius:2px;
+    }
+
+    .create{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      margin-top:8px;
+    }
+    .create .outline{
+      border:1px solid #e6eefb;
+      background:linear-gradient(180deg,#ffffff,#f8fbff);
+      padding:10px 12px;
+      border-radius:8px;
+      font-weight:700;
+      color:#063068;
+      cursor:pointer;
+    }
+
+    .foot{
+      margin-top:10px;
+      font-size:13px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    /* small screens */
+    @media (max-width:920px){
+      .container{ grid-template-columns: 1fr; gap:18px; padding:0 10px; }
+      .promo{ order:2; padding:28px; border-radius:10px; }
+      .card{ order:1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="page-title">
+
+    <section class="promo" aria-hidden="false">
+      <div class="brand" aria-hidden="true">
+        <div class="logo">BC</div>
+        <h1>BlueConnect</h1>
+      </div>
+
+      <h2 id="page-title">Connect with friends and the world</h2>
+      <p>Share updates, join communities, and discover what matters to you — a clean, private demo environment for social interactions and testing.</p>
+    </section>
+
+    <section class="card" aria-labelledby="signin-title">
+      <div>
+        <h3 id="signin-title">Sign in to BlueConnect</h3>
+        <p>Use your account to continue to BlueConnect demo.</p>
+      </div>
+
+      <form id="signin-form" novalidate>
+        <div>
+          <label for="email">Email or phone</label>
+          <input id="email" name="email" class="input" type="text" inputmode="email" autocomplete="username" required
+                 aria-required="true" placeholder="you@example.com">
+          <div id="email-error" role="alert" style="display:none;color:#b91c1c;font-size:13px;margin-top:6px;"></div>
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" class="input" type="password" autocomplete="current-password" required
+                 aria-required="true" placeholder="••••••••">
+          <div id="pw-error" role="alert" style="display:none;color:#b91c1c;font-size:13px;margin-top:6px;"></div>
+        </div>
+
+        <div class="row">
+          <label class="remember">
+            <input type="checkbox" id="remember" name="remember">
+            <span style="font-size:14px;color:var(--muted)">Remember me</span>
+          </label>
+          <a class="link" href="#" onclick="alert('Demo: password reset flow')">Forgot password?</a>
+        </div>
+
+        <button class="btn" type="submit" aria-label="Sign in">Log In</button>
+
+        <div class="divider" role="separator" aria-hidden="true"></div>
+
+        <div class="create" aria-hidden="false">
+          <button type="button" class="outline" onclick="alert('Demo: create account')">Create new account</button>
+        </div>
+
+        <div class="foot" aria-hidden="true">
+          This is a demo login page — replace this with your real authentication flow when ready.
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <script>
+    // Basic front-end validation/demo. DOES NOT submit credentials anywhere.
+    document.getElementById('signin-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = document.getElementById('email');
+      const pw = document.getElementById('password');
+      const emailError = document.getElementById('email-error');
+      const pwError = document.getElementById('pw-error');
+
+      let ok = true;
+      emailError.style.display = 'none';
+      pwError.style.display = 'none';
+
+      if (!email.value.trim()) {
+        emailError.textContent = 'Please enter your email or phone.';
+        emailError.style.display = 'block';
+        ok = false;
+      } else if (email.value.length < 3) {
+        emailError.textContent = 'That value looks too short.';
+        emailError.style.display = 'block';
+        ok = false;
+      }
+
+      if (!pw.value) {
+        pwError.textContent = 'Please enter your password.';
+        pwError.style.display = 'block';
+        ok = false;
+      } else if (pw.value.length < 6) {
+        pwError.textContent = 'Password must be at least 6 characters.';
+        pwError.style.display = 'block';
+        ok = false;
+      }
+
+      if (!ok) return;
+
+      // Demo success modal / action
+      alert('Demo sign-in successful (client-side only). Replace this handler with your secure backend auth.');
+      // clear fields for demo purposes
+      email.value = '';
+      pw.value = '';
+      document.getElementById('remember').checked = false;
+    });
+  </script>
+</body>
+</html>
