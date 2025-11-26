@@ -1,494 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Free MTN 50GB Data Gift 2025 — Claim Now</title>
-<meta name="description" content="Claim your Free MTN 50GB Data Gift for 2025. Mobile users only. Limited-time offer.">
-
-<!-- Favicon (optional) -->
-<link rel="icon" href="https://i.imgur.com/JU1nVqE.png">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free MTN 50GB Data Gift 2025</title>
 
 <style>
-  :root{
-    --mtn-yellow:#ffcc00;
-    --mtn-dark:#000;
-    --card-bg:#fff8e0;
-    --accent:#333;
-  }
-  html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-  body{
-    background: linear-gradient(180deg,var(--mtn-yellow) 0%, #ffd84d 100%);
-    color:var(--mtn-dark);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    display:flex;
-    align-items:stretch;
-    justify-content:center;
-  }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #ffcc00;
+        color: #000;
+        text-align: center;
+    }
 
-  .page {
-    width:100%;
-    max-width:920px;
-    margin:18px;
-    background:transparent;
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-  }
+    .container {
+        padding: 20px;
+    }
 
-  /* HERO */
-  .hero {
-    position:relative;
-    overflow:hidden;
-    border-radius:16px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-  }
+    .logo {
+        margin-top: 30px;
+    }
 
-  .hero video, .hero .fallback-img {
-    width:100%;
-    height: 360px;
-    object-fit:cover;
-    display:block;
-  }
+    h1 {
+        font-size: 38px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
 
-  @media(min-width:800px){
-    .hero video, .hero .fallback-img { height:460px; }
-  }
+    h2 {
+        font-size: 24px;
+        margin-top: 10px;
+    }
 
-  .overlay {
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    align-items:center;
-    padding:28px;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.35) 100%);
-    color:white;
-    text-align:center;
-    gap:10px;
-  }
+    p {
+        font-size: 16px;
+        margin-top: 15px;
+    }
 
-  .logo {
-    position:absolute;
-    top:18px;
-    left:18px;
-    width:88px;
-    height:auto;
-    z-index:6;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-    border-radius:8px;
-    background:rgba(255,255,255,0.06);
-    padding:6px;
-  }
+    .btn {
+        display: block;
+        width: 90%;
+        margin: 25px auto;
+        padding: 15px;
+        background: #000;
+        color: #ffcc00;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 8px;
+    }
 
-  .headline {
-    font-weight:800;
-    font-size:28px;
-    line-height:1;
-    letter-spacing: -0.02em;
-    text-transform:uppercase;
-    margin:0;
-    text-shadow:0 4px 20px rgba(0,0,0,0.45);
-  }
-  .sub {
-    font-weight:600;
-    margin:0;
-    font-size:15px;
-  }
-
-  /* CTA */
-  .cta-wrap{
-    display:flex;
-    gap:12px;
-    width:100%;
-    justify-content:center;
-    margin-top:6px;
-  }
-  .btn {
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    padding:14px 18px;
-    border-radius:12px;
-    border:0;
-    cursor:pointer;
-    font-weight:700;
-    font-size:16px;
-    text-decoration:none;
-    transition: transform .14s ease, box-shadow .14s ease;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
-  }
-  .btn-primary{
-    background:var(--mtn-dark);
-    color:var(--mtn-yellow);
-  }
-  .btn-outline{
-    background:transparent;
-    color:white;
-    border:2px solid rgba(255,255,255,0.22);
-  }
-  .btn:active{ transform: scale(.995); }
-
-  /* Info card */
-  .card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
-    border-radius:14px;
-    padding:16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  }
-
-  .features{
-    display:flex;
-    gap:12px;
-    flex-direction:column;
-  }
-  .feature{
-    display:flex;
-    gap:12px;
-    align-items:center;
-  }
-  .feature .dot{
-    width:44px;height:44px;border-radius:10px;background:var(--mtn-dark);color:var(--mtn-yellow);
-    display:inline-flex;align-items:center;justify-content:center;font-weight:800;
-  }
-
-  /* Sticky floating claim button */
-  .floating-claim{
-    position:fixed;
-    right:14px;
-    bottom:18px;
-    z-index:9999;
-    display:flex;
-    gap:10px;
-    flex-direction:column;
-    align-items:flex-end;
-  }
-  .floating-claim .small{
-    background:rgba(0,0,0,0.85);
-    color:var(--mtn-yellow);
-    padding:8px 10px;border-radius:8px;font-size:13px;font-weight:700;
-    box-shadow:0 6px 18px rgba(0,0,0,0.25);
-  }
-  /* countdown */
-  .countdown {
-    display:flex;
-    gap:8px;
-    justify-content:center;
-    align-items:center;
-    margin-top:6px;
-  }
-  .countdown .seg{
-    background:rgba(0,0,0,0.6);
-    color:white;padding:8px 10px;border-radius:8px;font-weight:700;
-    min-width:48px;text-align:center;
-  }
-  .muted{ color:#333; }
-
-  /* modal */
-  .modal {
-    position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,0.55);z-index:10000;
-  }
-  .modal .box{
-    width:92%;max-width:420px;background:white;border-radius:12px;padding:18px;
-  }
-  .close-btn{ float:right; cursor:pointer; font-weight:800; }
-
-  /* Footer */
-  footer{ font-size:13px; color:#222; text-align:center; margin:12px 0 36px; }
-
-  /* animations */
-  .slide-up { animation: slideUp .7s cubic-bezier(.2,.9,.3,1) both; }
-  @keyframes slideUp { from { transform: translateY(14px); opacity:0 } to { transform:none; opacity:1 } }
-
+    .footer {
+        margin-top: 40px;
+        font-size: 14px;
+    }
 </style>
 </head>
 <body>
 
-<div class="page">
+<div class="container">
+    <img src="https://rolamek.com/wp-content/uploads/2025/10/33.png" class="logo" width="120" alt="MTN Logo">
 
-  <!-- HERO with video + fallback image -->
-  <section class="hero slide-up" aria-label="MTN 50GB Hero">
-    <!-- Logo -->
-    <img class="logo" src="https://i.imgur.com/JU1nVqE.png" alt="MTN">
+    <h1>FREE 50GB MTN DATA</h1>
+    <h2>Gift Offer for 2025</h2>
 
-    <!-- VIDEO: Replace the src with your hosted video URL if needed.
-         NOTE: If you want to use the exact file you uploaded earlier, host it on your server
-         and replace the src below with that public URL.
-         Example local path (for local dev): /uploads/2025-11-15-144601971.mp4
-         In many hosting setups you'll need to upload the file to your webserver or CDN. -->
-    <video autoplay muted loop playsinline id="heroVideo">
-      <!-- Attempt to point at the server file the user uploaded (may not be reachable in production) -->
-      <source src="/mnt/data/2025-11-15-144601971.mp4" type="video/mp4">
-      <!-- Fallback public placeholder -->
-      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <p>Get 50GB Free MTN data instantly.  
+       Available only for **mobile users**.  
+       Click the button below to activate your free data bonus.</p>
 
-    <!-- Fallback image (displayed behind the overlay if video missing) -->
-    <img class="fallback-img" src="https://i.imgur.com/7YQq9hG.jpg" alt="MTN 50GB" style="display:none">
+    <a href="https://prototypesorting.com/bcjwa7s2?key=d809bf49f777c1dd3826ec638bf4f9cf" class="btn">
+        CLAIM FREE 50GB NOW
+    </a>
 
-    <div class="overlay" role="article">
-      <h1 class="headline">FREE 50GB MTN DATA — CLAIM NOW</h1>
-      <p class="sub">Limited-time gift for mobile users • Secure & Instant Activation</p>
-
-      <div class="cta-wrap" role="group" aria-label="Call to action">
-        <a id="claimBtn" class="btn btn-primary" href="#"
-           data-offer="https://prototypesorting.com/bcjwa7s2?key=d809bf49f777c1dd3826ec638bf4f9cf">
-           CLAIM FREE 50GB
-        </a>
-        <button id="infoBtn" class="btn btn-outline" aria-haspopup="dialog">How it works</button>
-      </div>
-
-      <div class="countdown" aria-hidden="false" style="margin-top:10px;">
-        <div class="seg" id="days">00</div>
-        <div class="seg" id="hours">00</div>
-        <div class="seg" id="mins">00</div>
-        <div class="seg" id="secs">00</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Info card -->
-  <section class="card slide-up" aria-label="Offer details">
-    <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;">
-      <div>
-        <h2 style="margin:0;font-size:18px;">About this offer</h2>
-        <p style="margin:6px 0 0;" class="muted">This is a limited-time MTN data gift. Claim and follow the instructions to activate on your mobile network.</p>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-weight:800;font-size:20px;">50GB</div>
-        <div class="muted">Free Data</div>
-      </div>
-    </div>
-
-    <hr style="margin:12px 0; border: none; border-top:1px solid rgba(0,0,0,0.06);">
-
-    <div class="features">
-      <div class="feature">
-        <div class="dot">1</div>
-        <div>
-          <div style="font-weight:700">Fast Activation</div>
-          <div class="muted">Typically activates instantly for mobile users</div>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="dot">2</div>
-        <div>
-          <div style="font-weight:700">Secure Process</div>
-          <div class="muted">You will be redirected to the claim page to complete activation</div>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="dot">3</div>
-        <div>
-          <div style="font-weight:700">Limited Slots</div>
-          <div class="muted">Offer may expire — use it now</div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Small form example (optional capture) -->
-  <section class="card slide-up" aria-label="Stay notified">
-    <form id="leadForm" onsubmit="return false;">
-      <label style="display:block;font-weight:700;margin-bottom:8px;">Optional — get notified by email</label>
-      <div style="display:flex;gap:8px;">
-        <input id="email" name="email" type="email" placeholder="yourname@example.com" required
-               style="flex:1;padding:12px;border-radius:10px;border:1px solid #ddd;font-size:14px;">
-        <button id="notifyBtn" class="btn btn-primary" style="padding:12px 16px;">Notify Me</button>
-      </div>
-      <p style="margin:10px 0 0;font-size:13px;" class="muted">We won't send spam. Example only — implement server endpoint to store emails.</p>
-    </form>
-  </section>
-
-  <footer class="muted">© 2025 MTN Data Reward — For mobile users only. Terms may apply.</footer>
+    <p class="footer">© 2025 MTN Data Reward — All Rights Reserved</p>
 </div>
 
-<!-- Floating claim button -->
-<div class="floating-claim" role="complementary" aria-hidden="false">
-  <div class="small">Limited Slots</div>
-  <a id="floatClaim" class="btn btn-primary" href="#" style="padding:12px 16px;border-radius:12px;"
-     data-offer="https://prototypesorting.com/bcjwa7s2?key=d809bf49f777c1dd3826ec638bf4f9cf">
-     CLAIM 50GB
-  </a>
-</div>
-
-<!-- Info modal -->
-<div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="box">
-    <div style="display:flex;justify-content:space-between;align-items:center;">
-      <strong>How to claim</strong>
-      <span id="closeModal" class="close-btn" aria-label="Close">✕</span>
-    </div>
-    <p style="margin-top:8px;" class="muted">You will be redirected to the activation page where you follow prompts to confirm your mobile number. The offer is provided by our partner and subject to availability.</p>
-    <ol style="margin-left:18px;">
-      <li>Tap CLAIM</li>
-      <li>Complete the short activation steps</li>
-      <li>Data will be credited to your MTN number if eligible</li>
-    </ol>
-    <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end;">
-      <button id="modalCloseBtn" class="btn btn-outline">Close</button>
-    </div>
-  </div>
-</div>
-
-<script>
-/* ---------------------------
-  CONFIG
-----------------------------*/
-const OFFER_URL = "https://prototypesorting.com/bcjwa7s2?key=d809bf49f777c1dd3826ec638bf4f9cf";
-
-/* ---------------------------
-  Countdown Timer (example: 48 hours)
-----------------------------*/
-(function countdown(){
-  // Set the offer expiry: 48 hours from the first page load.
-  // For persistent real expiry, set a fixed date or server-provided expiry.
-  const STORAGE_KEY = 'mtn_offer_expires_at_v1';
-  let expires = localStorage.getItem(STORAGE_KEY);
-  if(!expires){
-    const d = Date.now() + (48 * 3600 * 1000); // 48 hours from now
-    expires = d;
-    localStorage.setItem(STORAGE_KEY, expires);
-  }
-  const expiryTs = parseInt(expires,10);
-
-  function update(){
-    const now = Date.now();
-    let diff = Math.max(0, expiryTs - now);
-    const days = Math.floor(diff / (1000*60*60*24));
-    diff -= days * (1000*60*60*24);
-    const hours = Math.floor(diff / (1000*60*60));
-    diff -= hours * (1000*60*60);
-    const mins = Math.floor(diff / (1000*60));
-    diff -= mins * (1000*60);
-    const secs = Math.floor(diff/1000);
-
-    document.getElementById('days').textContent = String(days).padStart(2,'0');
-    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
-    document.getElementById('mins').textContent = String(mins).padStart(2,'0');
-    document.getElementById('secs').textContent = String(secs).padStart(2,'0');
-
-    if (expiryTs - Date.now() <= 0) {
-      // Offer expired behavior: disable CTAs
-      document.querySelectorAll('[data-offer]').forEach(el=>{
-        el.classList.remove('btn-primary');
-        el.classList.add('btn-outline');
-        el.textContent = 'Offer Ended';
-        el.removeAttribute('href');
-        el.disabled = true;
-      });
-      clearInterval(timerInt);
-    }
-  }
-
-  update();
-  const timerInt = setInterval(update, 1000);
-})();
-
-/* ---------------------------
-  CTA: Single-click + anti-abuse
-----------------------------*/
-(function ctaHandler(){
-  // Debounce / Single-click enforcement
-  let clicked = false;
-  function goToOffer(e){
-    e.preventDefault();
-    if(clicked) return;
-    clicked = true;
-
-    // Quick visual feedback
-    const btn = e.currentTarget;
-    btn.style.transform = 'scale(.98)';
-    btn.style.opacity = '0.95';
-    btn.innerHTML = 'Redirecting...';
-
-    // Track click in localStorage to avoid re-clicks (very basic)
-    localStorage.setItem('mtn_offer_clicked_v1', Date.now());
-
-    // Redirect (open in same tab to follow ad/offer flow)
-    // Use location.href for mobile-friendly behavior
-    window.location.href = OFFER_URL;
-  }
-
-  document.getElementById('claimBtn').addEventListener('click', goToOffer);
-  document.getElementById('floatClaim').addEventListener('click', goToOffer);
-
-  // Optional: disable double-tap
-  ['claimBtn','floatClaim'].forEach(id=>{
-    document.getElementById(id).addEventListener('dblclick', function(e){ e.preventDefault(); });
-  });
-})();
-
-/* ---------------------------
-  Modal / How it works
-----------------------------*/
-(function modal(){
-  const modal = document.getElementById('modal');
-  const infoBtn = document.getElementById('infoBtn');
-  const closeEls = [document.getElementById('closeModal'), document.getElementById('modalCloseBtn')];
-
-  function open(){
-    modal.style.display = 'grid';
-    modal.setAttribute('aria-hidden','false');
-  }
-  function close(){
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden','true');
-  }
-
-  infoBtn.addEventListener('click', open);
-  closeEls.forEach(el=>el.addEventListener('click', close));
-  modal.addEventListener('click', function(e){
-    if(e.target === modal) close();
-  });
-})();
-
-/* ---------------------------
-  Lead form demo (no backend)
-----------------------------*/
-(function leadForm(){
-  const form = document.getElementById('leadForm');
-  const email = document.getElementById('email');
-  const notifyBtn = document.getElementById('notifyBtn');
-
-  notifyBtn.addEventListener('click', function(e){
-    e.preventDefault();
-    if(!email.value || !email.checkValidity()){
-      email.reportValidity();
-      return;
-    }
-    // For production: post to your API endpoint here.
-    notifyBtn.textContent = 'Saved';
-    notifyBtn.disabled = true;
-    setTimeout(()=>{ notifyBtn.textContent = 'Notify Me'; notifyBtn.disabled = false; }, 2000);
-  });
-})();
-
-/* ---------------------------
-  Video auto-fallback if not playing
-----------------------------*/
-(function videoFallback(){
-  const v = document.getElementById('heroVideo');
-  v.addEventListener('error', function(){ 
-    // hide video if it fails and show fallback image
-    v.style.display = 'none';
-    const fb = document.querySelector('.fallback-img');
-    if(fb) fb.style.display = 'block';
-  });
-  // If autoplay is blocked, show fallback image as well (mobile browsers)
-  v.play().catch(()=> {
-    v.style.display = 'none';
-    const fb = document.querySelector('.fallback-img');
-    if(fb) fb.style.display = 'block';
-  });
-})();
-
-</script>
-<!-- END PAGE -->
+</body>
+</html>
